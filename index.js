@@ -1,0 +1,363 @@
+
+
+
+
+//fetch//start
+function getQuery(queries) {
+    const queryKey = Object.keys(queries).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queries[key])}`)
+    return queryKey.join('&');
+}
+function checkFetch(response) {
+    if (!response.ok) {
+        throw new Error(response);
+    } else if (response.status == 404) {
+        $('div.response-error-status').append(`<p>Page not found, please try again later</p>`)
+        $('div.response-error-status').removeClass('hidden');
+    } else if (response.status == 403) {
+        $('div.response-error-status').append(`<p>Please verify your credentials</p>`)
+        $('div.response-error-status').removeClass('hidden');
+    }
+    return response.json();
+}
+//display functions//
+function displayEvents(answer) {
+    $('div.events-container').removeClass('hidden');
+    $('div.display-events').empty();
+    for (i = 0; i < 10; i++) {
+        let info = answer._embedded.events[i]
+        const eventName = answer._embedded.events[i].name.slice(0,25)
+        if (info.hasOwnProperty('info')) {
+            $('div.display-events').append(`
+                <div class="event-box">
+                <img class="event-image-form" src="${answer._embedded.events[i].images[0].url}" alt="event">
+                <div class="event-info-box">
+                <p class="event-name-form">${eventName}...</p>
+                <p class="event-date-form">${answer._embedded.events[i].dates.start.localDate}</p>                
+                <p class="event-local-form">${answer._embedded.events[i]._embedded.venues[0].name}<span>${answer._embedded.events[i]._embedded.venues[0].city.name}</span></p>       
+                <p class="event-state-form">${answer._embedded.events[i]._embedded.venues[0].state.name}</p>
+                <a class="event-ticket-form" href="${answer._embedded.events[i].url}" target="_blank">Tickets</a>
+                </div></div>`)
+        }
+    }
+}
+function displayEventsHeader(answer) {  
+    for (i = 0; i < 2; i++) {
+        
+        let eventName = answer._embedded.events[i].name.slice(0,25)
+      
+            $('div.display-events-header').append(`
+                <div class="event-box-header">
+                <img class="event-image-header" src="${answer._embedded.events[i].images[0].url}" alt="event">
+                <div class="event-info-box-header">
+                <p class="event-name-header">${eventName}...</p>
+                <p class="event-date-header">${answer._embedded.events[i].dates.start.localDate}</p>                
+                <p class="event-local-header">${answer._embedded.events[i]._embedded.venues[0].name}<span>${answer._embedded.events[i]._embedded.venues[0].city.name}</span></p>       
+                <p class="event-state-header">${answer._embedded.events[i]._embedded.venues[0].state.name}</p>
+                <a class="event-ticket-header" href="${answer._embedded.events[i].url}" target="_blank">Tickets</a>
+                </div></div>`)
+        
+    }
+}
+function displayVideos(responseJson) { 
+    $('div.video-container').removeClass('hidden');
+    $('div.display-videos').empty();
+    for (i = 0; i < responseJson.items.length; i++) {
+        $('div.display-videos').append(`<div class="video-box"><div class="video-window"><iframe width="400"
+         height="300" src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe></div><div class="video-description"><p class="video-details">${responseJson.items[i].snippet.title}</p><p class="video-details">Channel: ${responseJson.items[i].snippet.channelTitle}</p></div></div>`)
+         $('body').css("cursor", "auto");
+    }  
+}
+function displayPlaylist(responseJson) {
+    $('div.playlist-container').removeClass('hidden');
+    $('div.display-playlist').empty();
+    for (i = 0; i < responseJson.items.length; i++) {
+        $('div.display-playlist').append(`<div class="playlist-box"><div class="playlist-window"><iframe width="400"
+         height="300" src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe></div><div class="playlist-description"><p class="playlist-details">${responseJson.items[i].snippet.title}</p><p class="playlist-details">Channel: ${responseJson.items[i].snippet.channelTitle}</p></div></div>`)
+         $('body').css("cursor", "auto");
+    }  
+} 
+function displayNews(responseJson) {
+    $('div.display-news-header').empty();
+    for (i=0; i < 2; i++) {
+        let articleDescription  = responseJson.articles[i].description.slice(0, 110);
+        $('div.display-news-header').append(
+            `<div class="news-box">
+                <div class="news-thumbnail">
+                    <img class="news-image" src="${responseJson.articles[i].urlToImage}">
+                </div>
+                <div class="news-details">
+                    <a class="news-link" href="${responseJson.articles[i].url}" target="_blank">${responseJson.articles[i].title} </a>
+                    <p>${articleDescription}...</p>
+                    <p class="news-source">${responseJson.articles[i].source.name}</p>
+                </div>
+            </div>`
+        );
+    }
+}
+//fetch functions//
+function getEventsForm() {
+    $('body').css("cursor", "progress");
+    const keyword = $('input#form-search-keyword-input').val();
+    const queries = {
+        keyword,
+        Countrycode: 'us',
+        apikey: 'aaCLKnns2YaVmTYNlBA1Kt7xzhGyyZDY',
+    }
+
+    const uri = getQuery(queries);
+    const url = 'https://app.ticketmaster.com/discovery/v2/events.json?' + uri;
+    console.log(url);
+
+    fetch(url)
+        .then(response => checkFetch(response))
+        .then(responseJson => displayEvents(responseJson))
+        .catch(err => {
+        //    throw new err ('oops something went wrong') 
+        });
+}
+function getEventHeader() { 
+    const queries = {
+        keyword:'rock',
+        Countrycode: 'us',
+        apikey: 'aaCLKnns2YaVmTYNlBA1Kt7xzhGyyZDY',
+    }
+    
+    const uri = getQuery(queries);
+    const url = 'https://app.ticketmaster.com/discovery/v2/events.json?' + uri;
+    console.log(url);
+    fetch(url)
+        .then(response => checkFetch(response))
+        .then(responseJson => displayEventsHeader(responseJson))
+        .catch(err => {
+        //    throw new err ('oops something went wrong') 
+        });
+}
+getEventHeader();
+
+function getNews () {
+    const queryNews = $('input#form-search-keyword-input').val();
+    const q = queryNews
+    const newsQueries = {
+        q,
+        from: '2020-04-21',
+        sortBy: 'popularity',
+        apiKey: '2c0580819097450aba9194fb5ba7943c'
+    }
+    const newsUri = getQuery(newsQueries);
+    console.log(newsUri);
+    const newsUrl = 'http://newsapi.org/v2/everything?' + newsUri
+    console.log(newsUrl);
+    fetch(newsUrl)
+    .then(response => checkFetch(response))
+    .then(responseJson => displayNews(responseJson))
+    .catch(err => {
+        // throw new error ('oops something went wrong') 
+     });
+
+}
+
+function getNewsheader () {
+    // const queryNews = $('input#form-search-keyword-input').val();
+    // const q = queryNews
+    const newsQueries = {
+        q: 'trump',
+        from: '2020-04-21',
+        sortBy: 'popularity',
+        apiKey: '2c0580819097450aba9194fb5ba7943c'
+    }
+    const newsUri = getQuery(newsQueries);
+    console.log(newsUri);
+    const newsUrl = 'http://newsapi.org/v2/everything?' + newsUri
+    console.log(newsUrl);
+    fetch(newsUrl)
+    .then(response => checkFetch(response))
+    .then(responseJson => displayNews(responseJson))
+    .catch(err => {
+        // throw new error ('oops something went wrong') 
+     });
+
+
+}
+ getNewsheader();
+function getVideos() {
+    // $('body').css("cursor", "progress");
+    const queryYoutube = $('input#form-search-keyword-input').val();
+    const musicStyle = $('select#select_style_lessons').val();
+    const q = queryYoutube + musicStyle 
+    const youtubeQueries = {
+        part: 'snippet',
+        q,
+        maxResults: 12,
+        key: 'AIzaSyC1Avq5e1-qz1o6GeyULMRg9MO7b62_tSk'
+    }
+    const youtubeUri = getQuery(youtubeQueries);
+    console.log(youtubeUri);
+    const youtubeUrl = 'https://www.googleapis.com/youtube/v3/search?' + youtubeUri;
+    console.log(youtubeUrl);
+    fetch(youtubeUrl)
+        .then(response => checkFetch(response))
+        .then(responseJson => displayVideos(responseJson))
+        .catch(err => {
+            // throw new error ('oops something went wrong') 
+         });
+        
+}
+function getPlaylist() {
+    // $('body').css("cursor", "progress");
+    const queryYoutube = $('input#form-search-keyword-input').val();
+    const musicStyle = $('select#select_style_lessons').val();
+    const q = queryYoutube + musicStyle + 'playlist'
+    const youtubeQueries = {
+        part: 'snippet',
+        q,
+        maxResults: 12,
+        key: 'AIzaSyC1Avq5e1-qz1o6GeyULMRg9MO7b62_tSk'
+    }
+    const youtubeUri = getQuery(youtubeQueries);
+    console.log(youtubeUri);
+    const youtubeUrl = 'https://www.googleapis.com/youtube/v3/search?' + youtubeUri;
+    console.log(youtubeUrl);
+    fetch(youtubeUrl)
+        .then(response => checkFetch(response))
+        .then(responseJson => displayPlaylist(responseJson))
+        .catch(err => {
+            // throw new error ('oops something went wrong') 
+         });
+        
+}
+
+// async function waiting() {
+//     let promise = new Promise((resolve, reject) => {
+//         setTimeout(() => resolve('done'), 3000)
+//         $('body').css("cursor", "auto");
+//     });
+  
+  
+// }
+// fetch//end
+
+
+//login-js//
+
+function updateInformations() {
+    const userFirstName = $('input#signup-firstname-input').val();
+    const userLastName = $('input#signup-lastname-input').val();
+    const userEmail = $('input#signup-email-input').val();
+
+    $('button#button-finish-update').removeClass('hidden');
+    $('li#user-firstname').empty();
+    $('li#user-firstname').append(`<input class="information-label" type="text" name="" id="update-input-firstname" required placeholder="${userFirstName}">`);
+    $('li#user-lastname').empty();
+    $('li#user-lastname').append(`<input class="information-label" type="text" name="" id="update-input-lastname" required placeholder="${userLastName}">`);
+    $('li#user-email').empty();
+    $('li#user-email').append(`<input class="information-label" type="email" name="" id="update-input-email" required placeholder="${userEmail}">`);
+
+}
+function signUpForm() {
+    let userEvents = 'You have no events coming up'
+    let userTickets = 'No tickets'
+    let userParking = 'No parking pass'
+    let userPayment = 'No payment informations'
+    const userFirstName = $('input#signup-firstname-input').val();
+    const userLastName = $('input#signup-lastname-input').val();
+    const userEmail = $('input#signup-email-input').val();
+    const userPassword = $('input#signup-password-input').val();
+
+    if (userFirstName == '' || userLastName == '' || userEmail == '' || userPassword == '') {
+        $('label#fields-required-error-message').removeClass('hidden');
+    } else {
+        $('div#display_signup').removeClass('container_signup_form').addClass('hidden');
+        $('div#display_account').removeClass('hidden').addClass('container_profile_information');
+        $('div#user-firstname-welcome span').text(userFirstName);
+        $('li#user-firstname').text(userFirstName);
+        $('li#user-lastname').text(userLastName);
+        $('li#user-email').text(userEmail);
+        $('li#user-events').text(userEvents);
+        $('li#user-ticket').text(userTickets);
+        $('li#user-parking').text(userParking);
+        $('li#user-payment').text(userPayment);
+    }
+
+}
+
+
+
+
+
+
+
+
+//login-js-end//
+
+//fetch-jquery-home//
+$(document).ready(function () {
+    $('form.form-search').on('submit', function (e) {
+        
+        e.preventDefault();
+        $('body').css("cursor", "progress");
+        getPlaylist();
+        getVideos();
+        getEventsForm();
+        getNews();
+        // waiting();
+
+    });
+
+ 
+
+
+
+    //login-jquery
+    $('form.signup-form').on('submit', function (event) {
+        event.preventDefault();
+        signUpForm();
+    });
+
+    $('a#link-signup-no-account').on('click', function (event) {
+        event.preventDefault();
+        $('div#display_login').removeClass('login_form_container').addClass('hidden');
+        $('div#display_signup').removeClass('hidden').addClass('container_signup_form');
+    });
+
+
+    $('button#signup-form-submit').on('click', function (event) {
+        event.preventDefault();
+        signUpForm();
+
+
+    });
+    $('button#edit-info-button').on('click', function (event) {
+        event.preventDefault();
+        updateInformations();
+    });
+
+    $('input.signup-form-input').on('click', function (event) {
+        event.preventDefault();
+        $('label#fields-required-error-message').addClass('hidden');
+    });
+
+    $('button#button-finish-update').on('click', function (event) {
+        event.preventDefault();
+        let updatedUserFirstName = $('input#update-input-firstname').val();
+        let updatedUserLastName = $('input#update-input-lastname').val();
+        let updatedUserEmail = $('input#update-input-email').val();
+        $('li#user-firstname').text(updatedUserFirstName);
+        $('li#user-lastname').text(updatedUserLastName);
+        $('li#user-email').text(updatedUserEmail);
+        $('div#user-firstname-welcome span').empty();
+        $('div#user-firstname-welcome span').text(updatedUserFirstName);
+        $('button#button-finish-update').addClass('hidden');
+    });
+
+    $('button#asba').on('click', function (event) {
+        event.preventDefault();
+        getVideos();
+    })
+
+
+
+});
+
+
+
+
