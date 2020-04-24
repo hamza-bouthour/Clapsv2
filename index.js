@@ -1,8 +1,4 @@
 
-
-
-
-//fetch//start
 function getQuery(queries) {
     const queryKey = Object.keys(queries).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queries[key])}`)
     return queryKey.join('&');
@@ -19,7 +15,6 @@ function checkFetch(response) {
     }
     return response.json();
 }
-//display functions//
 function displayEvents(answer) {
     $('div.events-container').removeClass('hidden');
     $('div.display-events').empty();
@@ -42,20 +37,17 @@ function displayEvents(answer) {
 }
 function displayEventsHeader(answer) {  
     for (i = 0; i < 2; i++) {
-        
         let eventName = answer._embedded.events[i].name.slice(0,25)
-      
-            $('div.display-events-header').append(`
-                <div class="event-box-header">
-                <img class="event-image-header" src="${answer._embedded.events[i].images[0].url}" alt="event">
-                <div class="event-info-box-header">
-                <p class="event-name-header">${eventName}...</p>
-                <p class="event-date-header">${answer._embedded.events[i].dates.start.localDate}</p>                
-                <p class="event-local-header">${answer._embedded.events[i]._embedded.venues[0].name}<span>${answer._embedded.events[i]._embedded.venues[0].city.name}</span></p>       
-                <p class="event-state-header">${answer._embedded.events[i]._embedded.venues[0].state.name}</p>
-                <a class="event-ticket-header" href="${answer._embedded.events[i].url}" target="_blank">Tickets</a>
-                </div></div>`)
-        
+        $('div.display-events-header').append(`
+            <div class="event-box-header">
+            <img class="event-image-header" src="${answer._embedded.events[i].images[0].url}" alt="event">
+            <div class="event-info-box-header">
+            <p class="event-name-header">${eventName}...</p>
+            <p class="event-date-header">${answer._embedded.events[i].dates.start.localDate}</p>                
+            <p class="event-local-header">${answer._embedded.events[i]._embedded.venues[0].name}<span>${answer._embedded.events[i]._embedded.venues[0].city.name}</span></p>       
+            <p class="event-state-header">${answer._embedded.events[i]._embedded.venues[0].state.name}</p>
+            <a class="event-ticket-header" href="${answer._embedded.events[i].url}" target="_blank">Tickets</a>
+            </div></div>`)   
     }
 }
 function displayVideos(responseJson) { 
@@ -94,7 +86,7 @@ function displayNews(responseJson) {
         );
     }
 }
-//fetch functions//
+
 function getEventsForm() {
     $('body').css("cursor", "progress");
     const keyword = $('input#form-search-keyword-input').val();
@@ -103,16 +95,14 @@ function getEventsForm() {
         Countrycode: 'us',
         apikey: 'aaCLKnns2YaVmTYNlBA1Kt7xzhGyyZDY',
     }
-
     const uri = getQuery(queries);
     const url = 'https://app.ticketmaster.com/discovery/v2/events.json?' + uri;
     console.log(url);
-
     fetch(url)
         .then(response => checkFetch(response))
         .then(responseJson => displayEvents(responseJson))
         .catch(err => {
-        //    throw new err ('oops something went wrong') 
+           throw new err ('oops something went wrong') 
         });
 }
 function getEventHeader() { 
@@ -121,7 +111,6 @@ function getEventHeader() {
         Countrycode: 'us',
         apikey: 'aaCLKnns2YaVmTYNlBA1Kt7xzhGyyZDY',
     }
-    
     const uri = getQuery(queries);
     const url = 'https://app.ticketmaster.com/discovery/v2/events.json?' + uri;
     console.log(url);
@@ -129,11 +118,10 @@ function getEventHeader() {
         .then(response => checkFetch(response))
         .then(responseJson => displayEventsHeader(responseJson))
         .catch(err => {
-        //    throw new err ('oops something went wrong') 
+           throw new err ('oops something went wrong') 
         });
 }
 getEventHeader();
-
 function getNews () {
     const queryNews = $('input#form-search-keyword-input').val();
     const q = queryNews
@@ -151,14 +139,10 @@ function getNews () {
     .then(response => checkFetch(response))
     .then(responseJson => displayNews(responseJson))
     .catch(err => {
-        // throw new error ('oops something went wrong') 
+        throw new error ('oops something went wrong') 
      });
-
 }
-
 function getNewsheader () {
-    // const queryNews = $('input#form-search-keyword-input').val();
-    // const q = queryNews
     const newsQueries = {
         q: 'trump',
         from: '2020-04-21',
@@ -173,14 +157,11 @@ function getNewsheader () {
     .then(response => checkFetch(response))
     .then(responseJson => displayNews(responseJson))
     .catch(err => {
-        // throw new error ('oops something went wrong') 
+        throw new error ('oops something went wrong') 
      });
-
-
 }
- getNewsheader();
+getNewsheader();
 function getVideos() {
-    // $('body').css("cursor", "progress");
     const queryYoutube = $('input#form-search-keyword-input').val();
     const musicStyle = $('select#select_style_lessons').val();
     const q = queryYoutube + musicStyle 
@@ -198,12 +179,10 @@ function getVideos() {
         .then(response => checkFetch(response))
         .then(responseJson => displayVideos(responseJson))
         .catch(err => {
-            // throw new error ('oops something went wrong') 
-         });
-        
+            throw new error ('oops something went wrong') 
+         });        
 }
 function getPlaylist() {
-    // $('body').css("cursor", "progress");
     const queryYoutube = $('input#form-search-keyword-input').val();
     const musicStyle = $('select#select_style_lessons').val();
     const q = queryYoutube + musicStyle + 'playlist'
@@ -221,29 +200,14 @@ function getPlaylist() {
         .then(response => checkFetch(response))
         .then(responseJson => displayPlaylist(responseJson))
         .catch(err => {
-            // throw new error ('oops something went wrong') 
-         });
-        
+            throw new error ('oops something went wrong') 
+         });       
 }
-
-// async function waiting() {
-//     let promise = new Promise((resolve, reject) => {
-//         setTimeout(() => resolve('done'), 3000)
-//         $('body').css("cursor", "auto");
-//     });
-  
-  
-// }
-// fetch//end
-
-
-//login-js//
 
 function updateInformations() {
     const userFirstName = $('input#signup-firstname-input').val();
     const userLastName = $('input#signup-lastname-input').val();
     const userEmail = $('input#signup-email-input').val();
-
     $('button#button-finish-update').removeClass('hidden');
     $('li#user-firstname').empty();
     $('li#user-firstname').append(`<input class="information-label" type="text" name="" id="update-input-firstname" required placeholder="${userFirstName}">`);
@@ -251,7 +215,6 @@ function updateInformations() {
     $('li#user-lastname').append(`<input class="information-label" type="text" name="" id="update-input-lastname" required placeholder="${userLastName}">`);
     $('li#user-email').empty();
     $('li#user-email').append(`<input class="information-label" type="email" name="" id="update-input-email" required placeholder="${userEmail}">`);
-
 }
 function signUpForm() {
     let userEvents = 'You have no events coming up'
@@ -262,7 +225,6 @@ function signUpForm() {
     const userLastName = $('input#signup-lastname-input').val();
     const userEmail = $('input#signup-email-input').val();
     const userPassword = $('input#signup-password-input').val();
-
     if (userFirstName == '' || userLastName == '' || userEmail == '' || userPassword == '') {
         $('label#fields-required-error-message').removeClass('hidden');
     } else {
@@ -277,54 +239,38 @@ function signUpForm() {
         $('li#user-parking').text(userParking);
         $('li#user-payment').text(userPayment);
     }
-
 }
 
-
-
-
-
-
-
-
-//login-js-end//
-
-//fetch-jquery-home//
 $(document).ready(function () {
     $('form.form-search').on('submit', function (e) {
-        
         e.preventDefault();
         $('body').css("cursor", "progress");
         getPlaylist();
         getVideos();
         getEventsForm();
         getNews();
-        // waiting();
-
     });
-
- 
-
-
-
+   $('form.search-header-form').on('submit', function (e) {   
+        e.preventDefault();
+        $('body').css("cursor", "progress");
+        getPlaylist();
+        getVideos();
+        getEventsForm();
+        getNews();
+    });
     //login-jquery
     $('form.signup-form').on('submit', function (event) {
         event.preventDefault();
         signUpForm();
     });
-
     $('a#link-signup-no-account').on('click', function (event) {
         event.preventDefault();
         $('div#display_login').removeClass('login_form_container').addClass('hidden');
         $('div#display_signup').removeClass('hidden').addClass('container_signup_form');
     });
-
-
     $('button#signup-form-submit').on('click', function (event) {
         event.preventDefault();
         signUpForm();
-
-
     });
     $('button#edit-info-button').on('click', function (event) {
         event.preventDefault();
@@ -335,7 +281,6 @@ $(document).ready(function () {
         event.preventDefault();
         $('label#fields-required-error-message').addClass('hidden');
     });
-
     $('button#button-finish-update').on('click', function (event) {
         event.preventDefault();
         let updatedUserFirstName = $('input#update-input-firstname').val();
@@ -348,12 +293,15 @@ $(document).ready(function () {
         $('div#user-firstname-welcome span').text(updatedUserFirstName);
         $('button#button-finish-update').addClass('hidden');
     });
-
     $('button#asba').on('click', function (event) {
         event.preventDefault();
         getVideos();
     })
-
+    $("li#redirect-to-aboutme").click(function() {
+        $('html, body').animate({
+            scrollTop: $("div.html-button").offset().top
+        }, 8000);
+    });
 
 
 });

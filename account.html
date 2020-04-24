@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu+2|Titillium+Web&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="account.css" type="text/css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="index.js"></script>
@@ -17,20 +18,17 @@
     <header class="header-home">
         <div class="nav-bar">
             <ul class="nav-bar-items">
+                <li class="nav-bar-item"><img src="https://i.postimg.cc/vmHwt7nM/rename-edited.jpg" alt="logo"></li>
                 <li class="nav-bar-item" id="claps-icone"><a class="nav-item-link" href="index.html">Claps</a></li>
-                <li class="nav-bar-item"><a class="nav-item-link" href="https://www.ticketmaster.com/"
-                        target="_blank">Tickets</a></li>
+                <li class="nav-bar-item"><a class="nav-item-link" href="https://www.ticketmaster.com/"target="_blank">Tickets</a></li>
                 <li class="nav-bar-item"><a class="nav-item-link" id="account-html" href="account.html">Account</a></li>
-                <li class="nav-bar-item">
-                    
-                </li>
-
+                <li class="nav-bar-item"></li>
             </ul>
         </div>
     </header>
 
-
-    <div class="hidden" id="display_account"> <!--container_profile_information -->
+ <!--container_profile_information -->
+    <div class="hidden" id="display_account">
         
         <div class="user-welcome-message">
             <h2>Welcome</h2>
@@ -40,42 +38,39 @@
             <div class="update-redirect-buttons">
                 <button class="update-redirect-button" id="edit-info-button">Edit</button>
                 <button class="update-redirect-button" id="redirect-info-button"><a href="index.html">Home</a></button>
-               
             </div>
         </div>
-
-        <div class="user-label">
-            <ul class="information-label-list">
-                <li class="information-label">First name:</li>
-                <li class="information-label">Last name:</li>
-                <li class="information-label">Email:</li>
-                <li class="information-label">Coming up:</li>
-                <li class="information-label">Tickets:</li>
-                <li class="information-label">Parking pass:</li>
-                <li class="information-label">Payment informations:</li>
-            </ul>
+        <div class="profile-container">
+            <div class="user-label">
+                <ul class="information-label-list">
+                    <li class="information-label">First name:</li>
+                    <li class="information-label">Last name:</li>
+                    <li class="information-label">Email:</li>
+                    <li class="information-label">Coming up:</li>
+                    <li class="information-label">Tickets:</li>
+                    <li class="information-label">Parking pass:</li>
+                    <li class="information-label">Payment informations:</li>
+                </ul>
+            </div>
+            <div class="user-information">
+                <ul class="information-label-list">
+                    <li class="information-label" id="user-firstname"></li>
+                    <li class="information-label" id="user-lastname"></li>
+                    <li class="information-label" id="user-email"></li>
+                    <li class="information-label" id="user-events"></li>
+                    <li class="information-label" id="user-ticket"></li>
+                    <li class="information-label" id="user-parking"></li>
+                    <li class="information-label" id="user-payment"></li>
+                </ul>
+                <button class="hidden" id="button-finish-update">SAVE</button>
+            </div>
         </div>
-        <div class="user-information">
-            <ul class="information-label-list">
-                <li class="information-label" id="user-firstname"></li>
-                <li class="information-label" id="user-lastname"></li>
-                <li class="information-label" id="user-email"></li>
-                <li class="information-label" id="user-events"></li>
-                <li class="information-label" id="user-ticket"></li>
-                <li class="information-label" id="user-parking"></li>
-                <li class="information-label" id="user-payment"></li>
-            </ul>
-            <button class="hidden" id="button-finish-update">SAVE</button>
-        </div>
-        <div class="display-news-header">
-            
-        </div>
-
+        <div class="display-news-header"></div>
     </div>
 
-
-    <div class="hidden" id="display_signup"> <!--container_signup_form-->
-        <div class="introdution-signup-form">
+    <!--container_signup_form-->
+    <div class="hidden" id="display_signup">
+       <div class="introdution-signup-form">
             <h2>Welcome to Claps!</h2>
             <p>Create an account and follow your best teams and bands!</p>
             <p>Choose your favorites and get notified.</p>
@@ -83,7 +78,7 @@
         </div>
         <div>
             <form action="index.html" class="signup-form">
-                <label for="" class="signup-form-label hidden" id="fields-required-error-message">All fields are required!</label>
+                <label for="" class="signup-form-label hidden" id="fields-required-error-message">All fields arerequired!</label>
                 <label for="firstname" class="signup-form-label">First name:</label>
                 <input type="text" name="firstname" class="signup-form-input" id="signup-firstname-input" required>
                 <label for="lastname" class="signup-form-label">Last name:</label>
@@ -95,13 +90,11 @@
                 <button class="signup-form-submit-button" id="signup-form-submit">Create</button>
             </form>
         </div>
-        <div class="display-news-header">
-            
-        </div>
+        <div class="display-news-header"></div>
     </div>
 
-
-    <div class="login_form_container" id="display_login"> <!--login_form_container-->
+<!--login_form_container-->
+    <div class="login_form_container" id="display_login">
         <div class="login-welcome-message">
             <h2>Welcome to Claps!</h2>
         </div>
@@ -112,12 +105,9 @@
             <input type="password" name="password" id="password-input-login-form" class="input-login-form">
             <a href="" class="signup-link">Forgot email or password?</a>
             <button class="button-submit-login-form">Login</button>
-            
             <a class="signup-link" id="link-signup-no-account" href="">Don't have an account?</a>
         </form>
-        <div class="display-news-header">
-            
-        </div>
+        <div class="display-news-header"></div>
     </div>
 
     <footer>
@@ -139,21 +129,13 @@
                     <p><a href="https://www.linkedin.com/in/hamza-bouthour-a0265919b/" target="_blank">Linkedin</a></p>
                     <a href="https://www.instagram.com/h.bhzo/">Instagram</a>
                 </div>
-
                 <div class="bottom-contact">
-                    <p>
-                        <a href="https://developer.ticketmaster.com/products-and-docs/apis/getting-started/">Ticketmaster
-                            API</a>
-                    </p>
+                    <p><a href="https://developer.ticketmaster.com/products-and-docs/apis/getting-started/"target="_blank">Ticketmaster API v2</a></p>
+                    <p><a href="https://developers.google.com/youtube/v3" target="_blank">Youtube API v3</a></p>
+                    <p><a href="https://newsapi.org/" target="_blank">Newsapi API v2</a></p>
                 </div>
-
             </div>
+        </div>
     </footer>
-
-
-    <!-- <input class="information-label" type="text" name="" id="update-input-firstname">
-    <input class="information-label" type="text" name="" id="update-input-lastname">
-    <input class="information-label" type="email" name="" id="update-input-email"> -->
 </body>
-
 </html>

@@ -2,100 +2,73 @@
     * {
         box-sizing: border-box;
     }
-
     body {
         margin: 0;
-        background: linear-gradient(-45deg, #ee7752, #1a3172, #076d92, #0c8f70);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
-    }
-    
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
-        100% {
-            background-position: 0% 50%;
-        }
+        background-color: #076d92;
     }
     header.header-home {
-       
         margin-top: 0px;
-        width: 100%;
-        
-      
+        width: 100%;  
     } 
     .hidden {
         display: none;
     }
+    button:hover {
+        cursor: pointer;
+    }
     div.nav-bar {
         font-family: 'Baloo Tammudu 2', cursive;
         font-size: 18px;
-        padding-right: 50px;
         width: 100%;
-        height: 100px;
         position: fixed;
         top: 0;
-        background-color: rgba(243, 237, 237, 0.1);
+        background-color: white;
+        height: 75px;
     }
-
-    ul.nav-bar-items  {
-        
-        padding-left: 30px;
+    ul.nav-bar-items  {   
         margin-left: 0px;
-        color: white;
         list-style: none;
         display: flex;
         flex-direction: row;
         justify-content: start;
     }
-    button:hover {
-        cursor: pointer;
-    }
     li.nav-bar-item {
-        padding: 15px;
-       margin-right: 25px;
+        margin-right: 25px;
     }
-
+    li.nav-bar-item img {
+        margin-top: -20px;
+        margin-right: 40px;
+    }
     a.nav-item-link { 
+        font-size: 17px;
+        margin-right: 40px;
+        font-family: 'Source Sans Pro', sans-serif;
         text-decoration: none;
-        color: white;
+        color: #076d92;
     }
-
-    a.nav-item-link:hover {
-        color: rgb(13, 243, 44);
+    a.nav-item-link:hover { 
+        font-weight: 800; 
     }
-
     div.search-header-container {
-        /* margin-left: 200px; */
         position: fixed;
         right: 340px;
     }
-
-    
     li.signup-header {
         position: fixed;
         right: 50px;
     }
-
     a.signup-link {
         font-family: 'Titillium Web', sans-serif;
         color: rgb(97, 211, 226);
         font-size: 14px;
         text-decoration: none;
     }
-
     a.signup-link:hover {
         font-weight: 800;
     }
-
     li.nav-bar-link:hover a {
-     color: rgb(13, 243, 44);   
+        color: rgb(13, 243, 44);   
     }
-
     input.search-input-form-header {
         margin-left: 10px;
         width: 350px;
@@ -139,33 +112,29 @@
         outline: none;
     }
     div.container_profile_information  {
-      
-        
         font-family: 'Baloo Tammudu 2', cursive;
         margin-top: 200px;
         width: 100%;
-   
-        /* position: absolute; */
+        margin-left: 10px;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
-        
-        
+        justify-content: space-evenly;    
     }
-  
+    div.profile-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
     div.user-welcome-message h2 {
         color: white;
         font-size: 55px;
-        margin-top: -25px;
-       
+        margin-top: -25px;  
     }
     div#user-firstname-welcome {
-
         color: white;
         margin-top: 40px;
         font-size: 30px;
         margin-right: 40px;
-
     }
     li {
         list-style: none;
@@ -188,41 +157,31 @@
         line-height: 55px;
         border-bottom: rgba(4, 16, 91, 0.4) solid 2px;
         padding: 40px;
-        background-color: white;
-        
+        background-color: white;    
     }
-
     div.update-redirect-buttons {
         display: flex;
         flex-direction: column;
     }
-
     button.update-redirect-button {
         font-family: 'Baloo Tammudu 2', cursive;
-        background-color: rgba(4, 16, 91, 0.9);
-        border: solid 1px rgba(4, 16, 91, 0.7);
+        background-color: rgba(243, 237, 237, 0.1);       
         border-radius: 4px;
         color: rgb(253, 251, 251);
-        /* outline: none; */
         padding: 10px;
         font-size: 18px;
         margin-bottom: 10px;
     }
     button.update-redirect-button:hover {
         cursor: pointer;
-        border: solid 1px rgb(13, 243, 44);
+        border: solid 1px white;
     }
-
-    
-    div.container_signup_form {
-      
+    div.container_signup_form { 
         margin-top: 140px;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        
     }
-
     form.signup-form {
         position: relative;
         padding: 50px;
@@ -232,7 +191,6 @@
         color: black;
         display: flex;
         flex-direction: column;
-        /* justify-content: center; */
     }
     div.introdution-signup-form {
         line-height: 20px;
@@ -241,12 +199,10 @@
         padding: 15px;
         color: white;
         font-family: 'Baloo Tammudu 2', cursive;
-
     }
     div.demo-events img {
         width: 300px;
     }
-
     div.display-news-header {
         margin-left: -80px;
     }
@@ -262,17 +218,15 @@
         justify-content: start;
     }
     div.news-details {
-            line-height: 15px;
-            border-radius: 4px;
-            padding: 15px;
-            height: 220px;
-            /* background-color: rgba(22, 23, 29, 0.3); */
-            background-color: rgba(254, 254, 255, 0.7);
-            border: solid 1px white;
-            margin-left: 10px;
-            margin-right: 15px;
-            width: 200px;
-        
+        line-height: 15px;
+        border-radius: 4px;
+        padding: 15px;
+        height: 220px;
+        background-color: rgba(254, 254, 255, 0.7);
+        border: solid 1px white;
+        margin-left: 10px;
+        margin-right: 15px;
+        width: 200px;    
     }
     div.news-details a.news-link,
     div.news-details p.news-source {
@@ -281,20 +235,16 @@
         color:rgb(5, 17, 121);
         font-weight: 700;
     }
- 
-
     img.news-image {
         border-radius: 4px;
         width: 310px;
         height: 220px;
-        /* background-color: rgba(254, 254, 255, 0.7); */
         border: solid 1px white;
     }
     input.signup-form-input {
         border: solid 1px rgb(180, 182, 190) ;
         border-radius: 4px;
         padding: 10px;
-      
         font-family: 'Baloo Tammudu 2', cursive;
         height: 40px;
         width: 300px;
@@ -302,14 +252,11 @@
     input:active,
     input:focus {
         color: black;
-        
         border: solid 1px rgb(13, 243, 44);
         outline: none;
     }
     button:active,
     button:focus {
-        
-        
         border: none;
         outline: none;
     }
@@ -336,8 +283,7 @@
         justify-content: space-evenly;
     }
     form.login-form {
-        
-       margin-left: 60px;
+        margin-left: 60px;
         padding: 30px 40px;
         background-color:white;
         border: white solid 2px;
@@ -356,7 +302,6 @@
         border: solid 1px rgb(180, 182, 190) ;
         border-radius: 4px;
         padding: 10px;
-      
         font-family: 'Baloo Tammudu 2', cursive;
         height: 40px;
         width: 300px;
@@ -386,17 +331,15 @@
         padding-bottom: 25px;
         background-color: rgba(243, 237, 237, 0.1);
         margin-top: 200px;
-        width: 100%;
-       
+        width: 100%;      
     }
     div.contact-container {
         font-family: 'Baloo Tammudu 2', cursive;
         margin-left: 120px;
-       display: flex;
-       flex-direction: row;
-       justify-content: space-around;
-        color: white;
-        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        color: white;    
     }
     div.bottom-contact {
         line-height: 22px;
@@ -404,8 +347,7 @@
         margin-right: 170px;
     }
     p.bottom-about-header {
-      font-size: 18px;
-     
+      font-size: 18px;    
     }
     div.contact-container div a {
         color: white;
@@ -437,7 +379,6 @@
         height: 25px;
     }
     input.information-label::placeholder{
-        color: black;
-        
+        color: black;    
     }
 }
