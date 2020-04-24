@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu+2|Titillium+Web&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Paaji+2&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css" type="text/css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="index.js"></script>
@@ -17,23 +18,12 @@
     <header class="header-home">
         <div class="nav-bar">
             <ul class="nav-bar-items">
+                <li class="nav-bar-item"><img src="https://i.postimg.cc/vmHwt7nM/rename-edited.jpg" alt="logo"></li>
                 <li class="nav-bar-item" id="claps-icon"><a class="nav-item-link" href="index.html">Claps</a></li>
-                <li class="nav-bar-item"><a class="nav-item-link" href="https://www.ticketmaster.com/"
-                        target="_blank">Tickets</a></li>
+                <li class="nav-bar-item"><a class="nav-item-link" href="https://www.ticketmaster.com/"target="_blank">Tickets</a></li>
                 <li class="nav-bar-item"><a class="nav-item-link" href="account.html">Account</a></li>
-                <li class="nav-bar-item">
-
-                    <div class="search-header-container">
-                        <form action="" class="search-header-form">
-                            <input type="text" name="search-input-header" id="search-input-form-header"
-                                id="form-search-keyword-input2" placeholder="Madonna..">
-                            <button class="search-button-form-header">Clap</button>
-                        </form>
-                    </div>
-                </li>
-
-                <li class="signup-header nav-bar-item">
-                    <a class="signup-link" id="link_signup_home" href="account.html">Don't have an account?</a>
+                <li class="nav-bar-item"></li>
+                <li class="signup-header nav-bar-item"><a class="signup-link" id="link_signup_home" href="account.html">Don't have an account?</a>
                 </li>
             </ul>
         </div>
@@ -51,17 +41,12 @@
         <div class="front-message-news">
             <div class="introduction-header">
                 <p class="clap-icon">You will </p>
-                <p class="introduction-text">Find your favorite bands concerts, live broadcasts or their playlists from Youtube. You might be lucky and find tickets too!
-                    Don't forget to create an account to get updates on local shows, Sports and tickets.
-                </p>
+                <p class="introduction-text">Find your favorite bands concerts, live broadcasts or their playlists from
+                    Youtube. You might be lucky and find tickets too!
+                    Don't forget to create an account to get updates on local shows, Sports and tickets.</p>
             </div>
-            <div class="display-news-header">
-
-            </div>
+            <div class="display-news-header"></div>
             <div class="display-events-header"></div>
-
-
-
         </div>
     </header>
 
@@ -83,26 +68,20 @@
             <button class="form-search-button">Search</button>
         </form>
     </div>
-
     <div class="events-container hidden">
         <h2 class="display-container-header">Suggested events..</h2>
         <div class="display-events"></div>
     </div>
-
     <div class="playlist-container hidden">
         <h2 class="display-container-header">Youtube playlists..</h2>
         <div class="display-playlist"></div>
     </div>
-
     <div class="video-container hidden">.
         <h2 class="display-container-header">Live shows..</h2>
         <div class="display-videos"></div>
     </div>
-
-
-
     <footer>
-        <div class="html-bottom">
+        <div class="html-bottom-home">
             <div class="contact-container">
                 <div class="bottom-contact">
                     <p class="bottom-about-header">About</p>
@@ -120,36 +99,15 @@
                     <p><a href="https://www.linkedin.com/in/hamza-bouthour-a0265919b/" target="_blank">Linkedin</a></p>
                     <a href="https://www.instagram.com/h.bhzo/" target="_blank">Instagram</a>
                 </div>
-
+                
                 <div class="bottom-contact">
-                    <p>
-                        <a href="https://developer.ticketmaster.com/products-and-docs/apis/getting-started/" target="_blank">Ticketmaster
-                            API</a>
-                    </p>
+                    <p><a href="https://developer.ticketmaster.com/products-and-docs/apis/getting-started/"target="_blank">Ticketmaster API v2</a></p>
+                    <p><a href="https://developers.google.com/youtube/v3" target="_blank">Youtube API v3</a></p>
+                    <p><a href="https://newsapi.org/" target="_blank">Newsapi API v2</a></p>
                 </div>
-
             </div>
+        </div>
     </footer>
-
-    <!-- <div id="wait-window" class="promise-display hidden">
-        <p>finding the best events!</p>
-    </div> -->
-    <!-- <div class="video-box">
-        <div class="video-window">
-            <iframe width="400" height="300"
-                src="https://www.youtube.com/embed/${responseJson.items[i].snippet.id.videoId}" frameborder="0"
-                allowfullscreen>
-            </iframe>
-        </div>
-        <div class="video-description">
-            <p class="video-details">${responseJson.items[i].snippet.title}</p>
-            <p class="video-details">Channel: ${responseJson.items[i].snippet.channelTitle}</p>
-        </div>
-    </div> -->
-
-
-
-    <div class="response-error-status hidden"></div>
+        <div class="response-error-status hidden"></div>
 </body>
-
 </html>
