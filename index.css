@@ -488,7 +488,7 @@
 
 
 
-@media screen and (max-width: 720px) {
+@media screen and (min-width: 720px) {
 
     * {
         box-sizing: border-box;
@@ -517,7 +517,7 @@
         font-size: 18px;
         width: 100%;
         position: fixed;
-        top: 0;
+        top: 75px;
         background-color: white;
         height: 75px;
     }
@@ -591,7 +591,7 @@
     div.front-message-news {
         font-family: 'Baloo Tammudu 2', cursive;
         font-size: 14px;
-        
+        text-align: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -601,15 +601,14 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin-left: -80px;
+        margin: auto;
     }
     div.display-news {
         font-family: 'Baloo Tammudu 2', cursive;
         margin-left: 50px;
     }
     div.news-box {
-        margin-left: 90px;
-        margin-bottom: 50px;
+     
         display: flex;
         flex-direction: row;
         justify-content: start;
@@ -644,6 +643,7 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
+        flex-wrap: wrap;
         line-height: 20px;
         color: white;
         margin-top: 150px;
@@ -674,10 +674,10 @@
         color: white;
     }
     form.form-search {
-       
-        margin-top: -1350px;
-        
-       
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
         display: flex;
         flex-direction: row;
         justify-content: center;   
@@ -744,17 +744,18 @@
         overflow-y: hidden;  
     }
     div.display-events-header {
-        margin-left: -20px;
-    }
-    div.event-box-header {
-        font-family: 'Baloo Tammudu 2', cursive;
-        border-radius: 5px;
+        
         display: flex;
         flex-direction: row;
-        margin-left: 10px;  
-        text-align: left;
-        color: black;
-        margin-bottom: 67px; 
+        justify-content: center;
+        flex-wrap: wrap;
+     
+    }
+    div.event-box-header {
+       
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
     }
     div.event-box-header img {
         width: 360px;
