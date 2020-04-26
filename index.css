@@ -3,8 +3,8 @@
         box-sizing: border-box;
     }
     body {
-        background-color: tomato;
-        
+        background-color: #076d92;  
+        color: white;
        
     }
     .hidden {
@@ -12,7 +12,7 @@
     }
  
     div.nav-bar {
-        background-color: yellow;
+        background-color: white;
         border-bottom: solid 1px white;
         width: 100%;
         padding-left: 4px;
@@ -23,7 +23,7 @@
         left: 0;
     }
     div.nav-bar-line1 {
-        border: solid 1px red;
+        
         display: flex;
         flex-direction: row;
       justify-content: start;
@@ -70,8 +70,59 @@
         display: none;
     }
 
-    
-    
+    div.front-message-header {
+        margin-top: 70px;
+    }
+    div.front-message-header-line1 span.signup-link a{
+        float: right;
+        color: white;
+        text-decoration: none;
+    }
+    div.front-message-header-line1 span.notice {
+        color: white;
+        margin-left: 10px;
+    }
+    p.alert-symbol {
+        color: orangered;
+    }
+    div.display-events-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+    }
+    div.event-box-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    div.event-box-header img{
+       width: 110px;
+       height: 110px;
+       border: solid white 2px;
+    }
+    div.event-info-box-header {
+        padding-left: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 100px;
+        height: 110px;
+        border: solid white 2px;
+        line-height: 8px;
+        color: white;
+       font-size: 8px;
+    }
+    div.container-form-search {
+        margin-top: 30px;
+    }
+    form.form-search {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    form.form-search p {
+       display: none;
+    }
+
 }  
 
 
