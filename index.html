@@ -25,7 +25,7 @@
                 </div>
                 <div class="claps-logo"><img src="https://i.postimg.cc/vmHwt7nM/rename-edited.jpg" alt="logo"></div>
             </div>
-            <div class="nav-bar-line2">
+            <div class="nav-bar-line2 hidden">
                 <ul class="nav-bar-items">
                     <li class="nav-bar-item" id="header-logo"><img src="https://i.postimg.cc/vmHwt7nM/rename-edited.jpg" alt="logo"></li>
                     <li class="nav-bar-item" id="claps-icon"><a class="nav-item-link" href="index.html">Claps</a></li>
@@ -36,10 +36,13 @@
                 </ul>
             </div>
         </div>
-        <li class="signup-header nav-bar-item"><a class="signup-link" id="link_signup_home" href="account.html">Don't have an account?</a>
+        
         <div class="front-message-header">
-            <p class="notice-tag">Notice </p>
-            <p class="alert-symbol">&#9888;</p>
+            <div class="front-message-header-line1">
+                <p class="alert-symbol">&#9888;<span class="notice">Notice</span><span class="signup-link"><a id="link_signup_home" href="account.html">Don't have an account?</a></span></p>
+                
+            </div>
+            
             <p class="alert-text">The list below shows all events that have had recent schedule changes.
                 Please note that not all schedule changes are the result of COVID-19 precautions. Due to the quickly
                 evolving nature of this situation and the volume of affected events, we are experiencing delays in
@@ -48,7 +51,7 @@
                 quickly
                 as possible.</p>
         </div>
-        <div class="front-message-news">
+        <div class="front-message-news hidden">
             <div class="introduction-header">
                 <p class="clap-icon">You will </p>
                 <p class="introduction-text">Find your favorite bands concerts, live broadcasts or their playlists from
@@ -57,11 +60,10 @@
             </div>
         </div>
     </header>
-    <div class="display-news-header"></div>
+    <div class="display-news-header hidden"></div>
     <div class="display-events-header"></div>
 
     <div class="container-form-search">
-        
         <form class="form-search" action="index.html">
             <p>Find concerts by genre</p>
             <select name="lessons_style" id="select_style_lessons">
@@ -92,7 +94,7 @@
         <div class="display-videos"></div>
     </div>
     <footer>
-        <div class="html-bottom-home">
+        <div class="html-bottom-home hidden">
             <div class="contact-container">
                 <div class="bottom-contact">
                     <p class="bottom-about-header">About</p>
