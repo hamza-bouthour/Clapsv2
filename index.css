@@ -41,9 +41,14 @@
       margin-bottom: 0;
     }
     div.claps-logo {
-        margin-left: 37%;
+        margin-left: 31%;
+    }
+    div.claps-logo img {
+        height: 26px;
+        width: 150px;
     }
     div.nav-sandwich {
+        
         left: 0;
         margin-right: 20px;
     }
@@ -53,20 +58,32 @@
         width: 30px;
         height: 4px;
     }
-    div.claps-logo img {
-        height: 26px;
-        width: 100px;
+    div.sandwich-line-on-click {
+        background-color: gray;
+        margin-bottom: 5px;
+        width: 30px;
+        height: 4px;
     }
+
+
     div.nav-bar-line2 {
-       margin-top: -12px;
+        border-top: blue solid 1px;
+       
+        font-family: 'Open Sans', sans-serif;
+       /* margin-top: -12px; */
+       font-size: 13px;
        height: 30px;
+        
     }
+    /* div.nav-bar-line2-mobile {
+    
+    } */
     ul.nav-bar-items {
-     
         display: flex;
         flex-direction: row;
         justify-content: start;
         list-style: none;
+         margin-top: 4px;
 
     }
     ul.nav-bar-items a {
@@ -75,7 +92,8 @@
     
     }
     li.nav-bar-item {
-        margin-right: 30px;
+        
+        margin-right: 10px;
     }
     li#header-logo {
         display: none;
@@ -98,11 +116,11 @@
     }
     div.display-events-header {
         overflow-y: auto;
-        
+       
         font-family: 'Baloo Tammudu 2', cursive;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: start;
     }
     div.event-box-header {
         color: black;
