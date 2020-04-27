@@ -323,6 +323,15 @@ $(document).ready(function () {
               
                 
         });
+        // $('body').on('click', function (event) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        //     if (navClickCount > 1) {
+        //         $('div.sandwich-line-on-click').removeClass('sandwich-line-on-click').addClass('sandwich-line');
+        //         $('div.nav-bar-line2').addClass('hidden'); 
+        //         navClickCount = 1;
+        //     }
+        // });
     
 
 
