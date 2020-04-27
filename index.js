@@ -36,7 +36,7 @@ function displayEvents(answer) {
     }
 }
 function displayEventsHeader(answer) {  
-    for (i = 0; i < 2; i++) {
+    for (i = 0; i < 4; i++) {
         let eventName = answer._embedded.events[i].name.slice(0,25)
         $('div.display-events-header').append(`
             <div class="event-box-header">
@@ -164,7 +164,7 @@ getNewsheader();
 function getVideos() {
     const queryYoutube = $('input#form-search-keyword-input').val();
     const musicStyle = $('select#select_style_lessons').val();
-    const q = queryYoutube + musicStyle 
+    const q = queryYoutube + musicStyle + 'live'
     const youtubeQueries = {
         part: 'snippet',
         q,
@@ -203,6 +203,8 @@ function getPlaylist() {
             throw new error ('oops something went wrong') 
          });       
 }
+let navClickCount = 1 
+
 
 function updateInformations() {
     const userFirstName = $('input#signup-firstname-input').val();
@@ -215,6 +217,7 @@ function updateInformations() {
     $('li#user-lastname').append(`<input class="information-label" type="text" name="" id="update-input-lastname" required placeholder="${userLastName}">`);
     $('li#user-email').empty();
     $('li#user-email').append(`<input class="information-label" type="email" name="" id="update-input-email" required placeholder="${userEmail}">`);
+    console.log(userEmail);
 }
 function signUpForm() {
     let userEvents = 'You have no events coming up'
@@ -302,6 +305,25 @@ $(document).ready(function () {
             scrollTop: $("div.html-button").offset().top
         }, 8000);
     });
+    
+        
+        $('div.nav-sandiwch').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+           
+            if (navClickCount == 1) {
+            $('div.sandwich-line').addClass('sandwich-line-on-click');
+            $('div.nav-bar-line2').removeClass('hidden');  
+            navClickCount++;
+            }  else {
+                $('div.sandwich-line-on-click').removeClass('sandwich-line-on-click').addClass('sandwich-line');
+                $('div.nav-bar-line2').addClass('hidden'); 
+                navClickCount = 1;
+            }
+              
+                
+        });
+    
 
 
 });
