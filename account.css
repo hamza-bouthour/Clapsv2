@@ -493,30 +493,7 @@
         
         margin-right: 30px;
     }
-    li#header-logo {
-        display: none;
-    }
-    div.search-header-container {
-        position: absolute;
-        right: 340px;
-    }
-    li.signup-header {
-        position: absolute;
-        right: 50px;
-    }
-    div.search-header-container {
-        position: fixed;
-        right: 340px;
-    }
-    li.signup-header {
-        position: fixed;
-        right: 50px;
-    }
-  
- 
-    li.nav-bar-link:hover a {
-        color: rgb(13, 243, 44);   
-    }
+   
     input.search-input-form-header {
         margin-left: 10px;
         width: 350px;
@@ -552,30 +529,30 @@
         font-weight: 900;
            
     }
-    input:active,
+    /* input:active,
     input:focus {
         color: white;
         background-color:rgba(4, 16, 91, 0.4);
         border: solid 1px rgb(13, 243, 44);
         outline: none;
-    }
+    } */
     div.container_profile_information  {
         font-family: 'Baloo Tammudu 2', cursive;
-        margin-top: 200px;
+        margin-top: 100px;
         width: 100%;
         margin-left: 10px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;    
+        flex-direction: column;
+        justify-content: center;    
     }
     div.profile-container {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: start;
     }
     div.user-welcome-message h2 {
         color: white;
-        font-size: 55px;
+        font-size: 35px;
         margin-top: -25px;  
     }
     div#user-firstname-welcome {
@@ -587,24 +564,26 @@
     li {
         list-style: none;
     }
-    div.demo-events img {
+    /* div.demo-events img {
         width: 270px;
         margin-left: 50px;
-    }
+    } */
     div.user-information {
-        font-weight: 800;
-        line-height: 55px;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 35px;
         border-bottom: rgba(4, 16, 91, 0.4) solid 2px;
-        padding: 40px;
+        padding: 00px;
         padding-left: 0px;
         background-color: white;
-        margin-right: 45;
+        
     }
     div.user-label {
-        margin-left: 45;
-        line-height: 55px;
+        font-size: 15px;
+        /* margin-left: 45; */
+        line-height: 35px;
         border-bottom: rgba(4, 16, 91, 0.4) solid 2px;
-        padding: 40px;
+        padding: 0px;
         background-color: white;    
     }
     div.update-redirect-buttons {
@@ -625,25 +604,28 @@
         border: solid 1px white;
     }
     div.container_signup_form { 
-     
-        margin-top: 50px;
+    
+        margin-top: 70px;
+        color: white;
+        padding: 10px;
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
     form.signup-form {
        
-        margin: auto;
+   
+       
         background-color:#076d92;
-      
+        margin-left: 50px;
         border-radius: 4px;
         color: white;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: start;
     }
     div.introdution-signup-form {
-        line-height: 10px;
+        line-height: 15px;
         border-radius: 4px;
        
         margin: auto;
@@ -702,8 +684,7 @@
     }
     input:active,
     input:focus {
-        color: black;
-        border: solid 1px rgb(13, 243, 44);
+      
         outline: none;
     }
     button:active,
@@ -713,15 +694,15 @@
     }
     label.signup-form-label {
         font-family: 'Baloo Tammudu 2', cursive;
-        margin-top: 30px;
-        margin-bottom: 10px;
+     
     }
     button.signup-form-submit-button {
-        color: rgb(1, 202, 45);
+        background-color: #076d92;
+        color: white;
         font-size: 15px;
         font-weight: 800;
-        border: solid 2px white;
-        background-color: white;
+        border: solid 2px #076d92;
+      
         margin-left: 235px;
         margin-top: 30px;
         width: 60px;
