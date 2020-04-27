@@ -1,4 +1,4 @@
-@media screen and (min-width:720px) {
+/* @media screen and (min-width:999px) {
     * {
         box-sizing: border-box;
     }
@@ -327,6 +327,462 @@
         padding: 15px;
     }
     div.html-bottom {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        background-color: rgba(243, 237, 237, 0.1);
+        margin-top: 200px;
+        width: 100%;      
+    }
+    div.contact-container {
+        font-family: 'Baloo Tammudu 2', cursive;
+        margin-left: 120px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        color: white;    
+    }
+    div.bottom-contact {
+        line-height: 22px;
+        display: block;
+        margin-right: 170px;
+    }
+    p.bottom-about-header {
+      font-size: 18px;    
+    }
+    div.contact-container div a {
+        color: white;
+        text-decoration: none;
+    }
+    button.update-redirect-button:hover {
+        cursor: pointer;
+    }
+    button#button-finish-update {
+        font-size: 15px;
+        font-weight: 600;
+        position: absolute;
+        margin-left: 200px;
+        margin-bottom: 15px;
+        background-color: white;
+        border: solid 2px white;
+        color: rgb(1, 202, 45);
+    }
+    label#fields-required-error-message {
+        color: tomato;
+    }
+    button#redirect-info-button a {
+        text-decoration: none;
+        color: white;
+    }
+    input.information-label {
+        color: black;
+        padding-left: 7px;
+        height: 25px;
+    }
+    input.information-label::placeholder{
+        color: black;    
+    }
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width:999px) {
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        margin: 0;
+        background-color: #076d92;
+    }
+    header.header-home {
+        margin-top: 0px;
+        width: 100%;  
+    } 
+    .hidden {
+        display: none;
+    }
+    button:hover {
+        cursor: pointer;
+    }
+    div.nav-bar {
+        background-color: white;
+        border-bottom: solid 1px white;
+        width: 100%;
+        padding-left: 4px;
+        padding-top: 8px;
+        padding-right: 4px;
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    div.nav-bar-line1 {
+        
+        display: flex;
+        flex-direction: row;
+      justify-content: start;
+      margin-bottom: 0;
+    }
+    div.claps-logo {
+        margin-left: 31%;
+    }
+    div.claps-logo img {
+        margin-top: -7px;
+        height: 30px;
+        width: 150px;
+    }
+    div.nav-sandwich {
+        
+        left: 0;
+        margin-right: 20px;
+    }
+    div.sandwich-line {
+        background-color: #076d92;
+        margin-bottom: 5px;
+        width: 30px;
+        height: 4px;
+    }
+    div.sandwich-line-on-click {
+        background-color: gray;
+        margin-bottom: 5px;
+        width: 30px;
+        height: 4px;
+    }
+
+
+    div.nav-bar-line2 {
+        border-top: #076d92 solid 1px;
+       
+        font-family: 'Open Sans', sans-serif;
+     
+       font-size: 13px;
+       height: 30px;
+        
+    }
+ 
+    ul.nav-bar-items {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        list-style: none;
+         margin-top: 4px;
+
+    }
+    ul.nav-bar-items a {
+        
+        color: #076d92;
+        text-decoration: none;
+    
+    }
+    li.nav-bar-item {
+        
+        margin-right: 30px;
+    }
+    li#header-logo {
+        display: none;
+    }
+    div.search-header-container {
+        position: absolute;
+        right: 340px;
+    }
+    li.signup-header {
+        position: absolute;
+        right: 50px;
+    }
+    div.search-header-container {
+        position: fixed;
+        right: 340px;
+    }
+    li.signup-header {
+        position: fixed;
+        right: 50px;
+    }
+  
+ 
+    li.nav-bar-link:hover a {
+        color: rgb(13, 243, 44);   
+    }
+    input.search-input-form-header {
+        margin-left: 10px;
+        width: 350px;
+        height: 30px;
+        background-color: rgba(23, 31, 75, 0.3);
+        color: palegoldenrod;
+        border: solid 1px rgb(253, 251, 251);
+        border-radius: 4px;
+        margin-right: 4px;
+    }
+
+    button.search-button-form-header {
+        color: palegoldenrod;
+        height: 30px;
+        background-color: rgba(23, 31, 75, 0.3);
+        border: solid 1px rgb(253, 251, 251);
+        border-radius: 4px;
+        outline: none;
+    }
+
+    button.search-button-form-header:hover {
+        border: solid 1px rgb(13, 243, 44);
+    }
+
+
+    input.search-input-form-header::placeholder {
+        font-family: 'Baloo Tammudu 2', cursive;
+        padding-left: 5px;
+        color: rgb(167, 157, 157);
+    }
+    #account-html {
+        color: rgb(167, 157, 157);
+        font-weight: 900;
+           
+    }
+    input:active,
+    input:focus {
+        color: white;
+        background-color:rgba(4, 16, 91, 0.4);
+        border: solid 1px rgb(13, 243, 44);
+        outline: none;
+    }
+    div.container_profile_information  {
+        font-family: 'Baloo Tammudu 2', cursive;
+        margin-top: 200px;
+        width: 100%;
+        margin-left: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;    
+    }
+    div.profile-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    div.user-welcome-message h2 {
+        color: white;
+        font-size: 55px;
+        margin-top: -25px;  
+    }
+    div#user-firstname-welcome {
+        color: white;
+        margin-top: 40px;
+        font-size: 30px;
+        margin-right: 40px;
+    }
+    li {
+        list-style: none;
+    }
+    div.demo-events img {
+        width: 270px;
+        margin-left: 50px;
+    }
+    div.user-information {
+        font-weight: 800;
+        line-height: 55px;
+        border-bottom: rgba(4, 16, 91, 0.4) solid 2px;
+        padding: 40px;
+        padding-left: 0px;
+        background-color: white;
+        margin-right: 45;
+    }
+    div.user-label {
+        margin-left: 45;
+        line-height: 55px;
+        border-bottom: rgba(4, 16, 91, 0.4) solid 2px;
+        padding: 40px;
+        background-color: white;    
+    }
+    div.update-redirect-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+    button.update-redirect-button {
+        font-family: 'Baloo Tammudu 2', cursive;
+        background-color: rgba(243, 237, 237, 0.1);       
+        border-radius: 4px;
+        color: rgb(253, 251, 251);
+        padding: 10px;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    button.update-redirect-button:hover {
+        cursor: pointer;
+        border: solid 1px white;
+    }
+    div.container_signup_form { 
+     
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    form.signup-form {
+       
+        margin: auto;
+        background-color:#076d92;
+      
+        border-radius: 4px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    div.introdution-signup-form {
+        line-height: 10px;
+        border-radius: 4px;
+       
+        margin: auto;
+        color: white;
+        font-family: 'Baloo Tammudu 2', cursive;
+    }
+    div.demo-events img {
+        width: 300px;
+    }
+    div.display-news-header {
+        display: none;
+        margin-left: -80px;
+    }
+    div.display-news {
+        font-family: 'Baloo Tammudu 2', cursive;
+        margin-left: 50px;
+    }
+    div.news-box {
+        margin-left: 90px;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+    }
+    div.news-details {
+        line-height: 15px;
+        border-radius: 4px;
+        padding: 15px;
+        height: 220px;
+        background-color: rgba(254, 254, 255, 0.7);
+        border: solid 1px white;
+        margin-left: 10px;
+        margin-right: 15px;
+        width: 200px;    
+    }
+    div.news-details a.news-link,
+    div.news-details p.news-source {
+        color: black;
+        text-decoration: none;
+        color:rgb(5, 17, 121);
+        font-weight: 700;
+    }
+    img.news-image {
+        border-radius: 4px;
+        width: 310px;
+        height: 220px;
+        border: solid 1px white;
+    }
+    input.signup-form-input {
+        border: solid 1px rgb(180, 182, 190) ;
+        border-radius: 4px;
+        padding: 10px;
+        font-family: 'Baloo Tammudu 2', cursive;
+        height: 40px;
+        width: 300px;
+    }
+    input:active,
+    input:focus {
+        color: black;
+        border: solid 1px rgb(13, 243, 44);
+        outline: none;
+    }
+    button:active,
+    button:focus {
+        border: none;
+        outline: none;
+    }
+    label.signup-form-label {
+        font-family: 'Baloo Tammudu 2', cursive;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    button.signup-form-submit-button {
+        color: rgb(1, 202, 45);
+        font-size: 15px;
+        font-weight: 800;
+        border: solid 2px white;
+        background-color: white;
+        margin-left: 235px;
+        margin-top: 30px;
+        width: 60px;
+        height: 40px;
+    }
+    div.login_form_container {
+        margin-top: 70px;
+        color: white;
+        
+    
+     
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    form.login-form {
+       margin: auto;
+       
+        background-color:#076d92;
+       
+        border-radius: 4px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+      
+    }
+    label.login-form-label {
+        font-family: 'Baloo Tammudu 2', cursive;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    input.input-login-form {
+        border: solid 1px rgb(180, 182, 190) ;
+        border-radius: 4px;
+        padding: 10px;
+        font-family: 'Baloo Tammudu 2', cursive;
+        height: 40px;
+        width: 300px;
+    }
+    a.signup-link {
+        font-family: 'Titillium Web', sans-serif;
+        color: white;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    div.login-welcome-message  {
+        font-family: 'Source Sans Pro', sans-serif;
+        margin: auto;
+    }
+    button.button-submit-login-form {
+        color: rgb(5, 3, 110);
+        background-color: white;
+        border: white solid 2px;
+        margin-top: 15px;
+        font-size: 15px;
+        font-weight: 800;
+        padding: 15px;
+    }
+    div.html-bottom {
+        display: none;
         padding-top: 25px;
         padding-bottom: 25px;
         background-color: rgba(243, 237, 237, 0.1);
