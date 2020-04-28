@@ -191,10 +191,11 @@
         border: solid 1px white;
     }
     div.container_signup_form { 
+        
         margin-top: 140px;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: center;
     }
     form.signup-form {
         position: relative;
@@ -629,10 +630,12 @@
     }
    
     div.container_signup_form { 
+        
         text-align: center;
         margin-top: 70px;
         color: white;
         padding: 10px;
+
         display: flex;
         flex-direction: column;
         justify-content: end;
