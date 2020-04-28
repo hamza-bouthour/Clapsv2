@@ -1,943 +1,360 @@
-@media screen and (max-width: 999px) {
-    * {
-        box-sizing: border-box;
+
+function getQuery(queries) {
+    const queryKey = Object.keys(queries).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queries[key])}`)
+    return queryKey.join('&');
+}
+function checkFetch(response) {
+    if (!response.ok) {
+        throw new Error(response);
+    } else if (response.status == 404) {
+        $('div.response-error-status').append(`<p>Page not found, please try again later</p>`)
+        $('div.response-error-status').removeClass('hidden');
+    } else if (response.status == 403) {
+        $('div.response-error-status').append(`<p>Please verify your credentials</p>`)
+        $('div.response-error-status').removeClass('hidden');
     }
-    body {
-        background-color: #076d92;  
-        color: white;
-       
+    return response.json();
+}
+function displayEvents(answer) {
+    $('div.events-container').removeClass('hidden');
+    $('div.display-events').empty();
+    for (i = 0; i < 10; i++) {
+        let info = answer._embedded.events[i]
+        const eventName = answer._embedded.events[i].name.slice(0,25)
+        if (info.hasOwnProperty('info')) {
+            $('div.display-events').append(`
+                <div class="event-box">
+                <img class="event-image-form" src="${answer._embedded.events[i].images[0].url}" alt="event">
+                <div class="event-info-box">
+                <p class="event-name-form">${eventName}...</p>
+                <p class="event-date-form">${answer._embedded.events[i].dates.start.localDate}</p>                
+                <p class="event-local-form">${answer._embedded.events[i]._embedded.venues[0].name}<span>${answer._embedded.events[i]._embedded.venues[0].city.name}</span></p>       
+                <p class="event-state-form">${answer._embedded.events[i]._embedded.venues[0].state.name}</p>
+                <a class="event-ticket-form" href="${answer._embedded.events[i].url}" target="_blank">Tickets</a>
+                </div></div>`)
+        }
     }
-    .hidden {
-        display: none;
+}
+function displayEventsHeader(answer) {  
+    for (i = 0; i < 4; i++) {
+        let eventName = answer._embedded.events[i].name.slice(0,25)
+        $('div.display-events-header').append(`
+            <div class="event-box-header">
+            <img class="event-image-header" src="${answer._embedded.events[i].images[0].url}" alt="event">
+            <div class="event-info-box-header">
+            <p class="event-name-header">${eventName}...</p>
+            <p class="event-date-header">${answer._embedded.events[i].dates.start.localDate}</p>                
+            <p class="event-local-header">${answer._embedded.events[i]._embedded.venues[0].name}<span>${answer._embedded.events[i]._embedded.venues[0].city.name}</span></p>       
+            <p class="event-state-header">${answer._embedded.events[i]._embedded.venues[0].state.name}</p>
+            <a class="event-ticket-header" href="${answer._embedded.events[i].url}" target="_blank">Tickets</a>
+            </div></div>`)   
     }
-    button:active,
-    button:focus {
-        outline: none;
+}
+function displayVideos(responseJson) { 
+    $('div.video-container').removeClass('hidden');
+    $('div.display-videos').empty();
+    for (i = 0; i < responseJson.items.length; i++) {
+        $('div.display-videos').append(`<div class="video-box"><div class="video-window"><iframe width="400"
+         height="300" src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe></div><div class="video-description"><p class="video-details">${responseJson.items[i].snippet.title}</p><p class="video-details">Channel: ${responseJson.items[i].snippet.channelTitle}</p></div></div>`)
+         $('body').css("cursor", "auto");
+    }  
+}
+function displayPlaylist(responseJson) {
+    $('div.playlist-container').removeClass('hidden');
+    $('div.display-playlist').empty();
+    for (i = 0; i < responseJson.items.length; i++) {
+        $('div.display-playlist').append(`<div class="playlist-box"><div class="playlist-window"><iframe width="400"
+         height="300" src="https://www.youtube.com/embed/${responseJson.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe></div><div class="playlist-description"><p class="playlist-details">${responseJson.items[i].snippet.title}</p><p class="playlist-details">Channel: ${responseJson.items[i].snippet.channelTitle}</p></div></div>`)
+         $('body').css("cursor", "auto");
+    }  
+} 
+function displayNews(responseJson) {
+    $('div.display-news-header').empty();
+    for (i=0; i < 2; i++) {
+        let articleDescription  = responseJson.articles[i].description.slice(0, 110);
+        $('div.display-news-header').append(
+            `<div class="news-box">
+                <div class="news-thumbnail">
+                    <img class="news-image" src="${responseJson.articles[i].urlToImage}">
+                </div>
+                <div class="news-details">
+                    <a class="news-link" href="${responseJson.articles[i].url}" target="_blank">${responseJson.articles[i].title} </a>
+                    <p>${articleDescription}...</p>
+                    <p class="news-source">${responseJson.articles[i].source.name}</p>
+                </div>
+            </div>`
+        );
     }
-    input:active,
-    input:focus {
-        outline: none;
+}
+
+function getEventsForm() {
+    $('body').css("cursor", "progress");
+    const keyword = $('input#form-search-keyword-input').val();
+    const queries = {
+        keyword,
+        Countrycode: 'us',
+        apikey: 'aaCLKnns2YaVmTYNlBA1Kt7xzhGyyZDY',
     }
-    select:active,
-    select:focus {
-        outline: none;
+    const uri = getQuery(queries);
+    const url = 'https://app.ticketmaster.com/discovery/v2/events.json?' + uri;
+    console.log(url);
+    fetch(url)
+        .then(response => checkFetch(response))
+        .then(responseJson => displayEvents(responseJson))
+        .catch(err => {
+           throw new err ('oops something went wrong') 
+        });
+}
+function getEventHeader() { 
+    const queries = {
+        keyword:'rock',
+        Countrycode: 'us',
+        apikey: 'aaCLKnns2YaVmTYNlBA1Kt7xzhGyyZDY',
     }
-    div.nav-bar {
-        background-color: white;
-        border-bottom: solid 1px white;
-        width: 100%;
-        padding-left: 4px;
-        padding-top: 8px;
-        padding-right: 4px;
-        position: fixed;
-        top: 0;
-        left: 0;
+    const uri = getQuery(queries);
+    const url = 'https://app.ticketmaster.com/discovery/v2/events.json?' + uri;
+    console.log(url);
+    fetch(url)
+        .then(response => checkFetch(response))
+        .then(responseJson => displayEventsHeader(responseJson))
+        .catch(err => {
+           throw new err ('oops something went wrong') 
+        });
+}
+getEventHeader();
+function getNews () {
+    const queryNews = $('input#form-search-keyword-input').val();
+    const q = queryNews
+    const newsQueries = {
+        q,
+        from: '2020-04-21',
+        sortBy: 'popularity',
+        apiKey: '2c0580819097450aba9194fb5ba7943c'
     }
-    div.nav-bar-line1 {
-        
-        display: flex;
-        flex-direction: row;
-      justify-content: start;
-      margin-bottom: 0;
+    const newsUri = getQuery(newsQueries);
+    console.log(newsUri);
+    const newsUrl = 'http://newsapi.org/v2/everything?' + newsUri
+    console.log(newsUrl);
+    fetch(newsUrl)
+    .then(response => checkFetch(response))
+    .then(responseJson => displayNews(responseJson))
+    .catch(err => {
+        throw new error ('oops something went wrong') 
+     });
+}
+// function getNewsheader () {
+//     const newsQueries = {
+//         q: 'trump',
+//         from: '2020-04-21',
+//         sortBy: 'popularity',
+//         apiKey: '2c0580819097450aba9194fb5ba7943c'
+//     }
+//     const newsUri = getQuery(newsQueries);
+//     console.log(newsUri);
+//     const newsUrl = 'http://newsapi.org/v2/everything?' + newsUri
+//     console.log(newsUrl);
+//     fetch(newsUrl)
+//     .then(response => checkFetch(response))
+//     .then(responseJson => displayNews(responseJson))
+//     .catch(err => {
+//         throw new error ('oops something went wrong') 
+//      });
+// }
+// getNewsheader();
+function getVideos() {
+    const queryYoutube = $('input#form-search-keyword-input').val();
+    const musicStyle = $('select#select_style_lessons').val();
+    const q = queryYoutube + musicStyle + 'live'
+    const youtubeQueries = {
+        part: 'snippet',
+        q,
+        maxResults: 12,
+        key: 'AIzaSyC1Avq5e1-qz1o6GeyULMRg9MO7b62_tSk'
     }
-    div.claps-logo {
-        margin-left: 31%;
+    const youtubeUri = getQuery(youtubeQueries);
+    console.log(youtubeUri);
+    const youtubeUrl = 'https://www.googleapis.com/youtube/v3/search?' + youtubeUri;
+    console.log(youtubeUrl);
+    fetch(youtubeUrl)
+        .then(response => checkFetch(response))
+        .then(responseJson => displayVideos(responseJson))
+        .catch(err => {
+            throw new error ('oops something went wrong') 
+         });        
+}
+function getPlaylist() {
+    const queryYoutube = $('input#form-search-keyword-input').val();
+    const musicStyle = $('select#select_style_lessons').val();
+    const q = queryYoutube + musicStyle + 'playlist'
+    const youtubeQueries = {
+        part: 'snippet',
+        q,
+        maxResults: 12,
+        key: 'AIzaSyC1Avq5e1-qz1o6GeyULMRg9MO7b62_tSk'
     }
-    div.claps-logo img {
-        margin-top: -7px;
-        height: 30px;
-        width: 150px;
-    }
-    div.nav-sandwich {
-        
-        left: 0;
-        margin-right: 20px;
-    }
-    div.sandwich-line {
-        background-color: #076d92;
-        margin-bottom: 5px;
-        width: 30px;
-        height: 4px;
-    }
-    div.sandwich-line-on-click {
-        background-color: gray;
-        margin-bottom: 5px;
-        width: 30px;
-        height: 4px;
-    }
+    const youtubeUri = getQuery(youtubeQueries);
+    console.log(youtubeUri);
+    const youtubeUrl = 'https://www.googleapis.com/youtube/v3/search?' + youtubeUri;
+    console.log(youtubeUrl);
+    fetch(youtubeUrl)
+        .then(response => checkFetch(response))
+        .then(responseJson => displayPlaylist(responseJson))
+        .catch(err => {
+            throw new error ('oops something went wrong') 
+         });       
+}
+let navClickCount = 1 
+let contactClickCount = 1
 
 
-    div.nav-bar-line2 {
-        border-top: #076d92 solid 1px;
-       
-        font-family: 'Open Sans', sans-serif;
-     
-       font-size: 13px;
-       height: 30px;
-        
+function updateInformations() {
+    const userFirstName = $('input#signup-firstname-input').val();
+    const userLastName = $('input#signup-lastname-input').val();
+    const userEmail = $('input#signup-email-input').val();
+    $('button#button-finish-update').removeClass('hidden');
+    $('td#user-firstname').empty();
+    $('td#user-firstname').append(`<input class="information-label" type="text" name="" id="update-input-firstname" required placeholder="${userFirstName}">`);
+    $('td#user-lastname').empty();
+    $('td#user-lastname').append(`<input class="information-label" type="text" name="" id="update-input-lastname" required placeholder="${userLastName}">`);
+    $('td#user-email').empty();
+    $('td#user-email').append(`<input class="information-label" type="email" name="" id="update-input-email" required placeholder="${userEmail}">`);
+    console.log(userEmail);
+}
+function signUpForm() {
+    let userEvents = 'You have no events coming up'
+    let userTickets = 'No tickets'
+    let userParking = 'No parking pass'
+    let userPayment = 'No payment informations'
+    const userFirstName = $('input#signup-firstname-input').val();
+    const userLastName = $('input#signup-lastname-input').val();
+    const userEmail = $('input#signup-email-input').val();
+    const userPassword = $('input#signup-password-input').val();
+    if (userFirstName == '' || userLastName == '' || userEmail == '' || userPassword == '') {
+        $('label#fields-required-error-message').removeClass('hidden');
+    } else {
+        $('div#display_signup').removeClass('container_signup_form').addClass('hidden');
+        $('div#display_account').removeClass('hidden').addClass('container_profile_information');
+        $('div#user-firstname-welcome span').text(userFirstName);
+        $('td#user-firstname').text(userFirstName);
+        $('td#user-lastname').text(userLastName);
+        $('td#user-email').text(userEmail);
+        $('td#user-events').text(userEvents);
+        $('td#user-ticket').text(userTickets);
+        $('td#user-parking').text(userParking);
+        $('td#user-payment').text(userPayment);
     }
- 
-    ul.nav-bar-items {
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-        list-style: none;
-         margin-top: 4px;
+}
 
-    }
-    ul.nav-bar-items a {
-        
-        color: #076d92;
-        text-decoration: none;
+$(document).ready(function () {
+    $('form.form-search').on('submit', function (e) {
+        e.preventDefault();
+        $('body').css("cursor", "progress");
+        getPlaylist();
+        getVideos();
+        getEventsForm();
+        getNews();
+    });
+   $('form.search-header-form').on('submit', function (e) {   
+        e.preventDefault();
+        $('body').css("cursor", "progress");
+        getPlaylist();
+        getVideos();
+        getEventsForm();
+        getNews();
+    });
+    //login-jquery
+    $('form.signup-form').on('submit', function (event) {
+        event.preventDefault();
+        signUpForm();
+    });
+    $('a#link-signup-no-account').on('click', function (event) {
+        event.preventDefault();
+        $('div#display_login').removeClass('login_form_container').addClass('hidden');
+        $('div#display_signup').removeClass('hidden').addClass('container_signup_form');
+    });
+    $('button#signup-form-submit').on('click', function (event) {
+        event.preventDefault();
+        signUpForm();
+    });
+    $('button#edit-info-button').on('click', function (event) {
+        event.preventDefault();
+        updateInformations();
+    });
+
+    $('input.signup-form-input').on('click', function (event) {
+        event.preventDefault();
+        $('label#fields-required-error-message').addClass('hidden');
+    });
+    $('button#button-finish-update').on('click', function (event) {
+        event.preventDefault();
+        let updatedUserFirstName = $('input#update-input-firstname').val();
+        let updatedUserLastName = $('input#update-input-lastname').val();
+        let updatedUserEmail = $('input#update-input-email').val();
+        $('td#user-firstname').empty();
+        $('td#user-firstname').html(`<p>${updatedUserFirstName}</p>`);
+        $('td#user-lastname').empty();
+        $('td#user-lastname').text(updatedUserLastName);
+        $('td#user-email').empty();
+        $('td#user-email').text(updatedUserEmail);
+        $('div#user-firstname-welcome span').empty();
+        $('div#user-firstname-welcome span').text(updatedUserFirstName);
+        $('button#button-finish-update').addClass('hidden');
+    });
+    // $('button#asba').on('click', function (event) {
+    //     event.preventDefault();
+    //     getVideos();
+    // })
+    // $("li#redirect-to-aboutme").click(function() {
+    //     $('html, body').animate({
+    //         scrollTop: $("div.html-button").offset().top
+    //     }, 8000);
+    // });
     
-    }
-   
-    li.nav-bar-item {
         
-        margin-right: 30px;
-    }
-    li#header-logo {
-        display: none;
-    }
-
-    div.front-message-header {
-        font-family: 'Titillium Web', sans-serif;
-        margin-top: 70px;
-    }
-    div.front-message-header-line1 span.signup-link a{
-        font-size: 8px;
-        font-family: 'Titillium Web', sans-serif;
-        float: right;
-        color: white;
-        text-decoration: none;
-    }
- 
-    div.front-message-header-line1 span.notice {
-        color: white;
-        margin-left: 10px;
-    }
-    p.alert-symbol {
-        color: orangered;
-    }
-    div.display-events-header {
-        overflow-y: auto;
-       
-        font-family: 'Baloo Tammudu 2', cursive;
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-    }
-    div.event-box-header {
-        color: black;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-    div.event-box-header img{
-        border-radius: 3px; 
-       width: 115px;
-       height: 120px;
-       border: solid white 1px;
-    }
-    div.event-info-box-header {
-        border-radius: 3px; 
-        background-color: rgba(254, 254, 255, 0.7);
-        padding-left: 2px;
-        margin-left: 2px;
-        margin-right: 6px;
-        width: 100px;
-        height: 120px;
-        border: solid white 1px;
-        line-height: 8px;
-       font-size: 9px;
-    }
-    div.event-box-header a.event-ticket-header {
-        color: black;
-        text-decoration: none;
-        color:rgb(5, 17, 121);
-        font-weight: 700;
-    }
-    div.container-form-search {
-        margin-top: 30px;
-    }
-    form.form-search {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-    form.form-search p {
-       display: none;
-    }
-    input.form-search-input {
-        background-color: rgb(241, 244, 245);
-        font-family: 'Open Sans', sans-serif;
-        border: solid 1px white;
-        height: 40px;
-        margin-right: 10px;
-        border-radius: 4px;
-        padding-left: 3px;
-    }
-   
-    select#select_style_lessons {
-        font-family: 'Open Sans', sans-serif;
-        margin-right: 5px;
-        border-radius: 4px;
-        background-color: white;
-
-    }
-    option {
-        font-family: 'Open Sans', sans-serif;  
-    }
-    button.form-search-button {
-        background-color:rgba(243, 237, 237, 0.1);
-        font-family: 'Open Sans', sans-serif;
-        border-radius: 4px;
-        border: solid 1px white;
-        color: white;
-    }
-    div.display-events {
-        overflow-y: auto;
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-      
-    }
-    div.event-box {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        color: black;
-    }
-    div.event-box img{
-       width: 115px;
-       height: 120px;
-       border: solid white 1px;
-       border-radius: 3px;
-    }
-    div.event-info-box {
-        font-family: 'Open Sans', sans-serif;
-        background-color: rgba(254, 254, 255, 0.7);
-        padding-left: 2px;
-        margin-left: 2px;
-        margin-right: 6px;
-        width: 100px;
-        height: 120px;
-        border: solid white 1px;
-        line-height: 8px;
-        border-radius: 3px;
-       font-size: 9px;
-    }
-    div.display-playlist {
-        overflow-y: auto;
-        font-family: 'Open Sans', sans-serif;
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-        margin-bottom: 50px;
-    }
-    div.playlist-box {
-
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    div.playlist-box iframe {
-        border-radius: 3px;
-        border: solid 1px white;
-         width: 115px;
-       height: 120px;
-      
-    }
-    div.playlist-description {
-        
-        border-radius: 3px;
-        font-family: 'Open Sans', sans-serif;
-        background-color: rgba(254, 254, 255, 0.7);
-        padding-left: 2px;
-        margin-left: 2px;
-        margin-right: 6px;
-        width: 100px;
-        height: 120px;
-        border: solid white 1px;
-        line-height: 12px;
-        color: black;
-        font-size: 9px;
-    }
-    div.video-container {
-        margin-top: -10px;
-    }
-    div.display-videos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }
-    div.video-box {
-        border-radius: 2px;
-        border: solid 1px white;
-        margin-top: 10px;   
-    }
-    div.video-box iframe{
-        width: 130px;
-        height: 110px;   
-    }
-    div.video-description {
-        background-color: rgba(254, 254, 255, 0.7);
-        color: black;
-        font-size: 7px;
-        width: 130px;
-        height: 60px;
-        font-family: 'Open Sans', sans-serif;
-       
-        border-top: solid 1px white;
-        padding-left: 3px;
-       
-    }
-    div.video-window {
-        width: 130px;
-        height: 110px;
-        background-image: url(https://i.postimg.cc/vT8MY2CP/Spinner-1s-211px.gif);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    div h2 {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 15px;
-    }
-    .introduction-header {
-        font-family: 'Baloo Paaji 2', cursive;
-    }
-    div.html-bottom-home {
-        top: 65px;
-        left: 0;
-        position: fixed;
-        line-height: 12px;
-        font-size: 10px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        background-color: #076d92;
-     
-        width: 100%;
-    }
-    div.contact-container {
-        font-family: 'Baloo Tammudu 2', cursive;
-       
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        color: white;
-        
-    }
-    /* div.bottom-contact {
-        
-        display: block;
-        
-    } */
-    p.bottom-about-header {
-        font-weight: 700;
-        font-size: 10px; 
-    }
-    div.contact-container div a {
-        color: white;
-        text-decoration: underline;
-    }
-    .mobile-contact {
-        display: none;
-    }
-}  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- @media screen and (min-width: 1000px) {
-
-    * {
-        box-sizing: border-box;
-    }
-    body {
-        margin: 0;
-        background-color: #076d92;  
-    }
-    .hidden { 
-        display: none;
-    }
-    button:hover {
-        cursor: pointer;
-    }
-    button:focus,
-    button:active {
-        outline: none;
-    }
-    input::placeholder {
-        font-family: 'Open Sans', sans-serif;
-        color: rgb(167, 157, 157);
-    }
-    div.nav-bar {
-        font-family: 'Baloo Tammudu 2', cursive;
-        font-size: 18px;
-        width: 100%;
-        position: fixed;
-        top: 0;
-        background-color: white;
-        height: 75px;
-    }
-    div.claps-logo {
-        display: none;
-    }
-   
-    div.nav-bar-line2 {
-        display: block;
-    }
-    ul.nav-bar-items  {
-        margin-left: 0px;
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-    }
-    li.nav-bar-item  {
-        margin-right: 25px;
-    }
-    li.nav-bar-item img {
-        margin-top: -20px;
-        margin-right: 40px;
-    }
-    a.nav-item-link { 
-        font-size: 17px;
-        margin-right: 40px;
-        font-family: 'Source Sans Pro', sans-serif;
-        text-decoration: none;
-        color: #076d92;
-    }
-    a#show-contact-button {
-        display: none;
-    }
-    a#link_signup_home:hover {
-        
-     
-        text-decoration: underline;
+        $('div.nav-sandiwch').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+           
+            if (navClickCount == 1) {
+            $('div.sandwich-line').addClass('sandwich-line-on-click');
+            $('div.nav-bar-line2').removeClass('hidden');  
+            navClickCount++;
+            }  else {
+                $('div.sandwich-line-on-click').removeClass('sandwich-line-on-click').addClass('sandwich-line');
+                $('div.nav-bar-line2').addClass('hidden'); 
+                $('div.html-bottom-home').addClass('mobile-contact'); 
+                navClickCount = 1;
+            }
+              
+                
+        });
+        $('a.show-contact-button').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (contactClickCount == 1) {
+                $('div.html-bottom-home').removeClass('mobile-contact'); 
+                contactClickCount++;
+               
+            } else {
+                $('div.html-bottom-home').addClass('mobile-contact'); 
+                contactClickCount = 1;
+              
+            }
+            
+        });     
+        // $('body').on('click', function (event) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        //     if (navClickCount > 1) {
+        //         $('div.sandwich-line-on-click').removeClass('sandwich-line-on-click').addClass('sandwich-line');
+        //         $('div.nav-bar-line2').addClass('hidden'); 
+        //         navClickCount = 1;
+        //     }
+        // });
     
-    }
-    a.nav-item-link:hover { 
-        font-weight: 800;
-    }
-    div.search-header-container {
-        position: absolute;
-        right: 340px;
-    }
-    li.signup-header {
-        position: absolute;
-        right: 50px;
-    }
-    /* a.signup-link {
-        font-family: 'Titillium Web', sans-serif;
-        color: #076d92;
-        font-size: 14px;
-        text-decoration: none;
-    }
-    a.signup-link:hover {
-        font-weight: 800;
-    } */
-    input.search-input-form-header {
-        font-family: 'Titillium Web', sans-serif;
-        margin-left: 10px;
-        width: 350px;
-        height: 30px;
-        background-color: white;
-        color: black;
-        border: solid 1px rgb(253, 251, 251);
-        border-radius: 4px;
-        margin-right: 4px;
-        padding-left: 5px;
-    }
-    button.search-button-form-header {
-        color: white;
-        height: 30px;
-        background-color: rgba(243, 237, 237, 0.1);
-        border: solid 1px rgb(253, 251, 251);
-        border-radius: 4px;
-        outline: none;
-    }
-    input.search-input-form-header::placeholder {
-        font-family: 'Baloo Tammudu 2', cursive;
-        padding-left: 5px;
-        color: rgb(167, 157, 157);
-    }
-    div.front-message-news {
-        font-family: 'Baloo Paaji 2', cursive;
-        color: white;
-        margin-top: 0px;
-        margin-left: 30px;
-        width: 1000px;
-    }
-    div.display-news-header {
-        margin-left: -80px;
-    }
-    div.display-news {
-        font-family: 'Baloo Tammudu 2', cursive;
-        margin-left: 50px;
-    }
-    div.news-box {
-        margin-left: 90px;
-        margin-bottom: 50px;
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-    }
-    div.news-details {
-        line-height: 15px;
-        border-radius: 4px;
-        padding: 15px;
-        height: 220px;
-        background-color: rgba(254, 254, 255, 0.7);
-        border: solid 1px white;
-        margin-left: 10px;
-        margin-right: 15px;
-        width: 200px;    
-    }
-    div.news-details a.news-link,
-    div.news-details p.news-source {
-        color: black;
-        text-decoration: none;
-        color:rgb(5, 17, 121);
-        font-weight: 700;
-    }
-    img.news-image {
-        border-radius: 4px;
-        width: 310px;
-        height: 220px;  
-        border: solid 1px white;
-    }
-    div.front-message-header {
-       width: 200px;
-        font-family: 'Baloo Paaji 2', cursive;
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-        line-height: 35px;
-        color: white;
-        margin-top: 100px;
-        width: 850px;
-        font-size: 15px;
-        margin-left: 30px;
-    }
-    span.signup-link a {
-        position: fixed;
-        top: 17px;
-        right: 60px;
-        color: #076d92;
-        text-decoration: none;
-    }
-   
-    p.alert-symbol {
-        margin-left: 3px;
-        margin-top: 15px;
-        margin-right: 10px;
-        color: tomato;    
-    }
-    p.alert-text {
-       width: 1000px;
-    }
-    span.notice {
-        color: white;
-        margin-left: 10px;
-    }
-    div.introduction-header {
-       
-       margin-left: 30px;
-     
-       
-        color: white;
-    }
-    form.form-search {
-        margin-top: 20px;
-        margin-bottom: 50px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;   
-    }
-    input.form-search-input {
-        font-family: 'Open Sans', sans-serif;
-        background-color: rgb(241, 244, 245);
-        border: solid 1px #0a6181;
-        border-radius: 4px;
-        padding-left: 10px;
-        margin-right: 8px;
-        border-radius: 3px;
-        font-size: 20px;
-        width: 300px;
-    }
-    input.form-search-input::placeholder {
-        font-size: 20px;
-        font-family: 'Baloo Tammudu 2', cursive;
-        padding-left: 5px;
-        color: rgb(167, 157, 157);
-    }
-     input#form-search-keyword-input:active,
-    input#form-search-keyword-input:focus {
-        outline: none;
-    }
-    select#select_style_lessons {
-        border-radius: 4px;
-        font-size: 16px;
-        padding: 5px;
-        font-family: 'Open Sans', sans-serif;
-        background-color: white;
-        border: solid 1px #0a6181;
-    }
-    option {
-        font-family: 'Open Sans', sans-serif;   
-    }
-    form.form-search p {
-        font-size: 16px;
-        font-family: 'Open Sans', sans-serif;
-        color: white;
-        padding: 5px;
-        margin-right: 15px;
-        margin-left: 5px;
-    } 
-    button.form-search-button {
-        width: 70px;
-        padding: 2px;
-        font-size: 16px;
-        border: solid 1px white;
-        border-radius: 3px;
-        background-color:rgba(243, 237, 237, 0.1);
-        color: white;
-    }
-    div.events-container {
-        margin-top: 40px;
-    }
-    div.display-events {
-        display: flex;
-        flex-direction: row;
-        margin-left: -15px;
-        overflow-y: hidden;  
-    }
-    div.display-events-header {
-       display: flex;
-       flex-direction: row;
-       justify-content: start;
-       overflow-y: hidden;
-       
-    }
-    div.event-box-header {
-        font-family: 'Baloo Tammudu 2', cursive;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: row;
-        margin-left: 10px;  
-        text-align: left;
-        color: black;
-        margin-bottom: 25px;
-    }
-    div.event-box-header img {
-        width: 360px;
-        height: 220px;
-         border-radius: 4px; 
-         border: solid 1px white;
-    }
-    div.event-info-box-header {
-        line-height: 17px; 
-        border-radius: 4px;
-        padding: 12px;
-        font-size: 14px;
-        padding-top: 1px;
-        background-color: rgba(254, 254, 255, 0.7);
-        border: solid 1px white;
-        margin-left: 10px;
-        margin-right: 15px;
-        width: 200px;
-        height: 220px; 
-    }
-    div.event-box-header a.event-ticket-header {
-        color: black;
-        text-decoration: none;
-        color:rgb(5, 17, 121);
-        font-weight: 700;
-    }
-    p.event-local-header span {
-        margin-left: 12px;
-    }
-    p.event-name-header {
-        font-weight: 900;
-        color:rgb(5, 17, 121);
-    }
-    div.event-box { 
-        font-family: 'Baloo Tammudu 2', cursive;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: row;
-        margin-left: 50px;
-        text-align: left;
-        color: black;
-        margin-bottom: 25px;
-    }
-    div.event-box img {
-       width: 170px;
-       height: 191px;
-        border-radius: 4px; 
-        border: solid 1px white;
-    }
-    div.event-info-box {
-        border: solid 1px white;
-        line-height: 17px;
-        border-radius: 4px;
-        padding: 12px;
-        font-size: 14px;
-        padding-top: 1px;
-        background-color: rgba(254, 254, 255, 0.7);
-        margin-left: 10px;
-        margin-right: 15px;
-        width: 170px;
-        height: 191px;
-    }
-    div.event-box a.event-ticket-form {
-        color: black;
-        text-decoration: none;
-        color:rgb(5, 17, 121);
-        font-weight: 700;
-    }
-    p.event-local-form span {
-        margin-left: 12px;
-    }
-    p.event-name-form {
-        font-weight: 900;
-        color:rgb(5, 17, 121);
-    }
-    div.playlist-container {
-        margin-top: 30px;   
-    }
-    div.display-playlist {
-        font-family: 'Baloo Tammudu 2', cursive;
-        margin-left: -15px;
-        display: flex;
-        flex-direction: row;
-        overflow-y: hidden;
-    }
-    div.playlist-window {
-        background-image: url(https://i.postimg.cc/vT8MY2CP/Spinner-1s-211px.gif);
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 170px;
-        height: 191px;
-        border-radius: 4px;    
-    }
-    div.playlist-window iframe {
-        width: 170px;
-        height: 191px;
-        border: solid 1px white;
-    }
-    div.playlist-description {
-        line-height: 17px;
-        border-radius: 4px;
-        padding: 12px;
-        font-size: 14px;
-        padding-top: 1px;
-        background-color: rgba(254, 254, 255, 0.7);
-        margin-left: 10px;
-        margin-right: 15px;
-        width: 170px;
-        height: 191px;
-        border: solid 1px white;
-    }
-    div.playlist-box {
-        font-family: 'Baloo Tammudu 2', cursive;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: row;
-        margin-left: 50px;
-        margin-bottom: 25px;
-        text-align: left;
-        color: black;
-    }
-    div.display-playlist iframe {
-        border-radius: 5px;
-        width: 170px;
-        height: 191px;
-    }
-    h2.display-container-header {
-        font-family: 'Open Sans', sans-serif;
-        color: white;
-        margin-left: 33px;
-        font-weight: 400;
-    }
-    div.video-container {
-        margin-top: -10px;
-    }
-    div.display-videos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }
-    div.video-box {
-        border-radius: 4px;
-        border: solid 1px white;
-        margin-top: 10px;   
-    }
-    div.video-description {
-        font-size: 13px;
-        font-family: 'Open Sans', sans-serif;
-        color: white; 
-        border-top: solid 1px white;
-        padding: 10px 10px;
-        width: 400px;
-    }
-    div.video-window {
-        background-image: url(https://i.postimg.cc/vT8MY2CP/Spinner-1s-211px.gif);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    div.html-bottom-home {
-        padding-top: 25px;
-        padding-bottom: 25px;
-        background-color: rgba(243, 237, 237, 0.1);
-        margin-top: 300px;
-        width: 100%;
-    }
-    div.contact-container {
-        font-family: 'Baloo Tammudu 2', cursive;
-        margin-left: 120px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        color: white;
-        
-    }
-    div.bottom-contact {
-        line-height: 22px;
-        display: block;
-        margin-right: 170px;
-    }
-    p.bottom-about-header {
-        font-size: 18px; 
-    }
-    div.contact-container div a {
-        color: white;
-        text-decoration: none;
-    }
-    ::-webkit-scrollbar {
-        height: 8px;
-        width: 10px;
 
-    }
-    ::-webkit-scrollbar-thumb {
-        border-radius: 8px;
-        background-color: #1a8daa;  
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        border-radius: 8px;
-        background-color: #eaeff0;  
-    }
-}     
 
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 
 
