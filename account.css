@@ -804,11 +804,11 @@
     button#button-finish-update {
         font-size: 15px;
         font-weight: 600;
-        position: absolute;
+       
         margin-left: 200px;
         margin-bottom: 15px;
-        background-color: white;
-        border: solid 2px white;
+        background-color:#076d92;
+        border: solid 2px #076d92;
         color: rgb(1, 202, 45);
     }
     label#fields-required-error-message {
