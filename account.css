@@ -153,6 +153,7 @@
         margin-right: 45;
     }
     div.user-label {
+        border-radius: 3px;
         margin-left: 45;
         line-height: 55px;
         border-bottom: rgba(4, 16, 91, 0.4) solid 2px;
@@ -425,7 +426,7 @@
         border-bottom: solid 1px white;
         width: 100%;
         padding-left: 4px;
-        padding-top: 8px;
+        padding-top: 7px;
         padding-right: 4px;
         position: fixed;
         top: 0;
@@ -442,7 +443,7 @@
         margin-left: 31%;
     }
     div.claps-logo img {
-        margin-top: -7px;
+        margin-top: -5px;
         height: 30px;
         width: 150px;
     }
@@ -493,6 +494,9 @@
         
         margin-right: 30px;
     }
+    li#header-logo img {
+        display: none;
+    }
    
     input.search-input-form-header {
         margin-left: 10px;
@@ -537,98 +541,97 @@
         outline: none;
     } */
     div.container_profile_information  {
+        text-align: center;
         font-family: 'Baloo Tammudu 2', cursive;
-        margin-top: 100px;
-        width: 100%;
-        margin-left: 10px;
+        margin-top: 40px;
         display: flex;
         flex-direction: column;
-        justify-content: center;    
+        justify-content: center ;    
+     
     }
     div.profile-container {
         display: flex;
-        flex-direction: row;
-        justify-content: start;
+        
+        justify-content: center;
     }
+
+    table {
+        padding: 10px;
+        text-align: center;
+        background-color: white;
+    }
+    /* td {
+        margin-right: 220px;
+    } */
     div.user-welcome-message h2 {
         color: white;
         font-size: 35px;
-        margin-top: -25px;  
+        
     }
     div#user-firstname-welcome {
+        margin-top: -60px;
         color: white;
-        margin-top: 40px;
         font-size: 30px;
-        margin-right: 40px;
     }
-    li {
+    /* li {
         list-style: none;
-    }
+    } */
     /* div.demo-events img {
         width: 270px;
         margin-left: 50px;
     } */
-    div.user-information {
+    /* div.user-information {
         font-size: 15px;
         font-weight: 400;
         line-height: 35px;
         border-bottom: rgba(4, 16, 91, 0.4) solid 2px;
-        padding: 00px;
+        padding: 0px;
         padding-left: 0px;
         background-color: white;
         
-    }
-    div.user-label {
-        font-size: 15px;
-        /* margin-left: 45; */
-        line-height: 35px;
-        border-bottom: rgba(4, 16, 91, 0.4) solid 2px;
-        padding: 0px;
-        background-color: white;    
-    }
+    } */
+   
     div.update-redirect-buttons {
+        margin-bottom: -30px;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center;
     }
     button.update-redirect-button {
         font-family: 'Baloo Tammudu 2', cursive;
-        background-color: rgba(243, 237, 237, 0.1);       
+             
         border-radius: 4px;
+        background-color: #076d92;
+        border: #076d92 solid 1px;
         color: rgb(253, 251, 251);
         padding: 10px;
         font-size: 18px;
         margin-bottom: 10px;
     }
-    button.update-redirect-button:hover {
-        cursor: pointer;
-        border: solid 1px white;
-    }
+   
     div.container_signup_form { 
-    
+        text-align: center;
         margin-top: 70px;
         color: white;
         padding: 10px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: end;
     }
     form.signup-form {
        
-   
-       
         background-color:#076d92;
-        margin-left: 50px;
+      
+        text-align: center;
         border-radius: 4px;
         color: white;
         display: flex;
         flex-direction: column;
-        justify-content: start;
+        justify-content: center;
     }
     div.introdution-signup-form {
         line-height: 15px;
         border-radius: 4px;
-       
-        margin: auto;
         color: white;
         font-family: 'Baloo Tammudu 2', cursive;
     }
@@ -675,12 +678,15 @@
         border: solid 1px white;
     }
     input.signup-form-input {
+        
         border: solid 1px rgb(180, 182, 190) ;
         border-radius: 4px;
         padding: 10px;
         font-family: 'Baloo Tammudu 2', cursive;
-        height: 40px;
+        margin: auto;
         width: 300px;
+       
+        
     }
     input:active,
     input:focus {
@@ -693,18 +699,20 @@
         outline: none;
     }
     label.signup-form-label {
+        
         font-family: 'Baloo Tammudu 2', cursive;
+       
      
     }
     button.signup-form-submit-button {
         background-color: #076d92;
-        color: white;
+        color: rgb(1, 202, 45);
         font-size: 15px;
         font-weight: 800;
         border: solid 2px #076d92;
-      
-        margin-left: 235px;
-        margin-top: 30px;
+        margin: auto;
+        /* margin-left: 235px;
+        margin-top: 30px; */
         width: 60px;
         height: 40px;
     }
@@ -744,6 +752,7 @@
         width: 300px;
     }
     a.signup-link {
+        margin-top: 5px;
         font-family: 'Titillium Web', sans-serif;
         color: white;
         font-size: 14px;
@@ -754,13 +763,14 @@
         margin: auto;
     }
     button.button-submit-login-form {
-        color: rgb(5, 3, 110);
+        color: #076d92;
         background-color: white;
         border: white solid 2px;
-        margin-top: 15px;
-        font-size: 15px;
+        border-radius: 3px;
+        margin-top: 20px;
+        font-size: 14px;
         font-weight: 800;
-        padding: 15px;
+        padding: 8px;
     }
     div.html-bottom {
         display: none;
@@ -790,9 +800,7 @@
         color: white;
         text-decoration: none;
     }
-    button.update-redirect-button:hover {
-        cursor: pointer;
-    }
+  
     button#button-finish-update {
         font-size: 15px;
         font-weight: 600;
