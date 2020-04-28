@@ -341,7 +341,7 @@
         font-weight: 800;
         padding: 15px;
     }
-    div.html-bottom {
+    div.html-bottom-home {
         bottom: 0;
         padding-top: 25px;
         padding-bottom: 25px;
@@ -397,6 +397,9 @@
     input.information-label::placeholder{
         color: black;    
     }
+    a#show-contact-button {
+        display: none;
+    }
 }
 
 
@@ -441,7 +444,7 @@
         border-bottom: solid 1px white;
         width: 100%;
         padding-left: 4px;
-        padding-top: 7px;
+        padding-top: 8px;
         padding-right: 4px;
         position: fixed;
         top: 0;
@@ -458,7 +461,7 @@
         margin-left: 31%;
     }
     div.claps-logo img {
-        margin-top: -5px;
+        margin-top: -7px;
         height: 30px;
         width: 150px;
     }
@@ -490,6 +493,7 @@
        height: 30px;
         
     }
+    
  
     ul.nav-bar-items {
         display: flex;
@@ -509,7 +513,7 @@
         
         margin-right: 30px;
     }
-    li#header-logo img {
+    li#header-logo {
         display: none;
     }
    
@@ -755,10 +759,11 @@
     }
     label.login-form-label {
         font-family: 'Baloo Tammudu 2', cursive;
-        margin-top: 30px;
-        margin-bottom: 10px;
+       
+      
     }
     input.input-login-form {
+        margin-bottom: 20px;
         border: solid 1px rgb(180, 182, 190) ;
         border-radius: 4px;
         padding: 10px;
@@ -787,30 +792,8 @@
         font-weight: 800;
         padding: 8px;
     }
-    div.html-bottom {
-        display: none;
-        padding-top: 25px;
-        padding-bottom: 25px;
-        background-color: rgba(243, 237, 237, 0.1);
-        margin-top: 200px;
-        width: 100%;      
-    }
-    div.contact-container {
-        font-family: 'Baloo Tammudu 2', cursive;
-        margin-left: 120px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        color: white;    
-    }
-    div.bottom-contact {
-        line-height: 22px;
-        display: block;
-        margin-right: 170px;
-    }
-    p.bottom-about-header {
-      font-size: 18px;    
-    }
+  
+
     div.contact-container div a {
         color: white;
         text-decoration: none;
@@ -841,5 +824,42 @@
     }
     input.information-label::placeholder{
         color: black;    
+    }
+    div.html-bottom-home {
+        top: 65px;
+        left: 0;
+        position: fixed;
+        line-height: 12px;
+        font-size: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: #076d92;
+     
+        width: 100%;
+    }
+    div.contact-container {
+        font-family: 'Baloo Tammudu 2', cursive;
+       
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        color: white;
+        
+    }
+    /* div.bottom-contact {
+        
+        display: block;
+        
+    } */
+    p.bottom-about-header {
+        font-weight: 700;
+        font-size: 10px; 
+    }
+    div.contact-container div a {
+        color: white;
+        text-decoration: underline;
+    }
+    .mobile-contact {
+        display: none;
     }
 }
