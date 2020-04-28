@@ -142,25 +142,25 @@ function getNews () {
         throw new error ('oops something went wrong') 
      });
 }
-function getNewsheader () {
-    const newsQueries = {
-        q: 'trump',
-        from: '2020-04-21',
-        sortBy: 'popularity',
-        apiKey: '2c0580819097450aba9194fb5ba7943c'
-    }
-    const newsUri = getQuery(newsQueries);
-    console.log(newsUri);
-    const newsUrl = 'http://newsapi.org/v2/everything?' + newsUri
-    console.log(newsUrl);
-    fetch(newsUrl)
-    .then(response => checkFetch(response))
-    .then(responseJson => displayNews(responseJson))
-    .catch(err => {
-        throw new error ('oops something went wrong') 
-     });
-}
-getNewsheader();
+// function getNewsheader () {
+//     const newsQueries = {
+//         q: 'trump',
+//         from: '2020-04-21',
+//         sortBy: 'popularity',
+//         apiKey: '2c0580819097450aba9194fb5ba7943c'
+//     }
+//     const newsUri = getQuery(newsQueries);
+//     console.log(newsUri);
+//     const newsUrl = 'http://newsapi.org/v2/everything?' + newsUri
+//     console.log(newsUrl);
+//     fetch(newsUrl)
+//     .then(response => checkFetch(response))
+//     .then(responseJson => displayNews(responseJson))
+//     .catch(err => {
+//         throw new error ('oops something went wrong') 
+//      });
+// }
+// getNewsheader();
 function getVideos() {
     const queryYoutube = $('input#form-search-keyword-input').val();
     const musicStyle = $('select#select_style_lessons').val();
@@ -203,6 +203,7 @@ function getPlaylist() {
             throw new error ('oops something went wrong') 
          });       
 }
+
 let navClickCount = 1 
 let contactClickCount = 1
 
@@ -262,7 +263,6 @@ $(document).ready(function () {
         getEventsForm();
         getNews();
     });
-    //login-jquery
     $('form.signup-form').on('submit', function (event) {
         event.preventDefault();
         signUpForm();
@@ -280,7 +280,6 @@ $(document).ready(function () {
         event.preventDefault();
         updateInformations();
     });
-
     $('input.signup-form-input').on('click', function (event) {
         event.preventDefault();
         $('label#fields-required-error-message').addClass('hidden');
@@ -300,60 +299,33 @@ $(document).ready(function () {
         $('div#user-firstname-welcome span').text(updatedUserFirstName);
         $('button#button-finish-update').addClass('hidden');
     });
-    // $('button#asba').on('click', function (event) {
-    //     event.preventDefault();
-    //     getVideos();
-    // })
-    // $("li#redirect-to-aboutme").click(function() {
-    //     $('html, body').animate({
-    //         scrollTop: $("div.html-button").offset().top
-    //     }, 8000);
-    // });
-    
-        
-        $('div.nav-sandiwch').on('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-           
-            if (navClickCount == 1) {
-            $('div.sandwich-line').addClass('sandwich-line-on-click');
-            $('div.nav-bar-line2').removeClass('hidden');  
-            navClickCount++;
-            }  else {
-                $('div.sandwich-line-on-click').removeClass('sandwich-line-on-click').addClass('sandwich-line');
-                $('div.nav-bar-line2').addClass('hidden'); 
-                $('div.html-bottom-home').addClass('mobile-contact'); 
-                navClickCount = 1;
-            }
-              
-                
-        });
-        $('a.show-contact-button').on('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
-            if (contactClickCount == 1) {
-                $('div.html-bottom-home').removeClass('mobile-contact'); 
-                contactClickCount++;
-               
-            } else {
-                $('div.html-bottom-home').addClass('mobile-contact'); 
-                contactClickCount = 1;
-              
-            }
+    $('div.nav-sandiwch').on('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (navClickCount == 1) {
+        $('div.sandwich-line').addClass('sandwich-line-on-click');
+        $('div.nav-bar-line2').removeClass('hidden');  
+        navClickCount++;
+        }  else {
+            $('div.sandwich-line-on-click').removeClass('sandwich-line-on-click').addClass('sandwich-line');
+            $('div.nav-bar-line2').addClass('hidden'); 
+            $('div.html-bottom-home').addClass('mobile-contact'); 
+            navClickCount = 1;
+        }        
+    });
+    $('a.show-contact-button').on('click', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (contactClickCount == 1) {
+            $('div.html-bottom-home').removeClass('mobile-contact'); 
+            contactClickCount++;
             
-        });     
-        // $('body').on('click', function (event) {
-        //     event.preventDefault();
-        //     event.stopPropagation();
-        //     if (navClickCount > 1) {
-        //         $('div.sandwich-line-on-click').removeClass('sandwich-line-on-click').addClass('sandwich-line');
-        //         $('div.nav-bar-line2').addClass('hidden'); 
-        //         navClickCount = 1;
-        //     }
-        // });
-    
-
-
+        } else {
+            $('div.html-bottom-home').addClass('mobile-contact'); 
+            contactClickCount = 1;
+            
+        }  
+    });     
 });
 
 
