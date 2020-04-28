@@ -101,8 +101,8 @@ function getEventsForm() {
     fetch(url)
         .then(response => checkFetch(response))
         .then(responseJson => displayEvents(responseJson))
-        .catch(err => {
-           throw new err ('oops something went wrong') 
+        .catch(error => {
+           console.log(error);
         });
 }
 function getEventHeader() { 
@@ -117,8 +117,8 @@ function getEventHeader() {
     fetch(url)
         .then(response => checkFetch(response))
         .then(responseJson => displayEventsHeader(responseJson))
-        .catch(err => {
-           throw new err ('oops something went wrong') 
+        .catch(error => {
+            console.log(error);
         });
 }
 getEventHeader();
@@ -133,7 +133,25 @@ function getNews () {
     }
     const newsUri = getQuery(newsQueries);
     console.log(newsUri);
-    const newsUrl = 'http://newsapi.org/v2/everything?' + newsUri
+    const newsUrl = 'https://newsapi.org/v2/everything?' + newsUri
+    console.log(newsUrl);
+    fetch(newsUrl)
+    .then(response => checkFetch(response))
+    .then(responseJson => displayNews(responseJson))
+    .catch(error => {
+        console.log(error);
+     });
+}
+function getNewsheader () {
+    const newsQueries = {
+        q: 'trump',
+        from: '2020-04-21',
+        sortBy: 'popularity',
+        apiKey: '2c0580819097450aba9194fb5ba7943c'
+    }
+    const newsUri = getQuery(newsQueries);
+    console.log(newsUri);
+    const newsUrl = 'https://newsapi.org/v2/everything?' + newsUri
     console.log(newsUrl);
     fetch(newsUrl)
     .then(response => checkFetch(response))
@@ -142,25 +160,7 @@ function getNews () {
         throw new error ('oops something went wrong') 
      });
 }
-// function getNewsheader () {
-//     const newsQueries = {
-//         q: 'trump',
-//         from: '2020-04-21',
-//         sortBy: 'popularity',
-//         apiKey: '2c0580819097450aba9194fb5ba7943c'
-//     }
-//     const newsUri = getQuery(newsQueries);
-//     console.log(newsUri);
-//     const newsUrl = 'http://newsapi.org/v2/everything?' + newsUri
-//     console.log(newsUrl);
-//     fetch(newsUrl)
-//     .then(response => checkFetch(response))
-//     .then(responseJson => displayNews(responseJson))
-//     .catch(err => {
-//         throw new error ('oops something went wrong') 
-//      });
-// }
-// getNewsheader();
+getNewsheader();
 function getVideos() {
     const queryYoutube = $('input#form-search-keyword-input').val();
     const musicStyle = $('select#select_style_lessons').val();
@@ -178,8 +178,8 @@ function getVideos() {
     fetch(youtubeUrl)
         .then(response => checkFetch(response))
         .then(responseJson => displayVideos(responseJson))
-        .catch(err => {
-            throw new error ('oops something went wrong') 
+        .catch(error => {
+            console.log(error);
          });        
 }
 function getPlaylist() {
@@ -199,8 +199,8 @@ function getPlaylist() {
     fetch(youtubeUrl)
         .then(response => checkFetch(response))
         .then(responseJson => displayPlaylist(responseJson))
-        .catch(err => {
-            throw new error ('oops something went wrong') 
+        .catch(error => {
+            console.log(error);
          });       
 }
 
