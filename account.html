@@ -27,21 +27,23 @@
             </div>
             <div class="nav-bar-line2 hidden">
                 <ul class="nav-bar-items">
-                    <li class="nav-bar-item" id="header-logo"><img src="https://i.postimg.cc/vmHwt7nM/rename-edited.jpg" alt="logo"></li>
+                    <li class="nav-bar-item" id="header-logo"><img src="https://i.postimg.cc/vmHwt7nM/rename-edited.jpg"
+                            alt="logo"></li>
                     <li class="nav-bar-item" id="claps-icon"><a class="nav-item-link" href="index.html">Claps</a></li>
-                    <li class="nav-bar-item"><a class="nav-item-link" href="https://www.ticketmaster.com/"target="_blank">Tickets</a></li>
+                    <li class="nav-bar-item"><a class="nav-item-link" href="https://www.ticketmaster.com/"
+                            target="_blank">Tickets</a></li>
                     <li class="nav-bar-item"><a class="nav-item-link" href="account.html">Account</a></li>
                     <li class="nav-bar-item"></li>
                     </li>
                 </ul>
             </div>
-        
+
         </div>
     </header>
 
- <!--container_profile_information -->
+    <!--container_profile_information -->
     <div class="hidden" id="display_account">
-        
+
         <div class="user-welcome-message">
             <h2>Welcome</h2>
         </div>
@@ -53,7 +55,45 @@
             </div>
         </div>
         <div class="profile-container">
-            <div class="user-label">
+
+            <table>
+                <tr>
+                    <td class="information-label">First name:</td>
+                    <td class="information-label" id="user-firstname"></td>
+                </tr>
+                <tr>
+                    <td class="information-label">Last name:</td>
+                    <td class="information-label" id="user-lastname"></td>
+                </tr>
+                <tr>
+                    <td class="information-label">Email:</td>
+                    <td class="information-label" id="user-email"></td>
+                </tr>
+                <tr>
+                    <td class="information-label">Coming up:</td>
+                    <td class="information-label" id="user-events"></td>
+                </tr class="information-label">
+                <tr>
+                    <td class="information-label">Tickets:</td>
+                    <td class="information-label" id="user-ticket"></td>
+                </tr>
+                <tr>
+                    <td class="information-label">Parking pass:</td>
+                    <td class="information-label" id="user-parking"></td>
+                </tr>
+                <tr>
+                    <td class="information-label">Payment informations:</td>
+                    <td class="information-label" id="user-payment"></td>
+                </tr>
+
+            </table>
+           
+
+        </div>
+        <button class="hidden" id="button-finish-update">SAVE</button>
+    </div>
+    <div class="display-news-header"></div>
+    <!-- <div class="user-label">
                 <ul class="information-label-list">
                     <li class="information-label">First name:</li>
                     <li class="information-label">Last name:</li>
@@ -75,14 +115,14 @@
                     <li class="information-label" id="user-payment"></li>
                 </ul>
                 <button class="hidden" id="button-finish-update">SAVE</button>
-            </div>
-        </div>
-        <div class="display-news-header"></div>
-    </div>
+            </div> -->
+
+
+
 
     <!--container_signup_form-->
     <div class="hidden" id="display_signup">
-       <div class="introdution-signup-form">
+        <div class="introdution-signup-form">
             <h2>Welcome to Claps!</h2>
             <p>Create an account and follow your best teams and bands!</p>
             <p>Choose your favorites and get notified.</p>
@@ -90,22 +130,23 @@
         </div>
         <div>
             <form action="index.html" class="signup-form">
-                <label for="" class="signup-form-label hidden" id="fields-required-error-message">All fields arerequired!</label>
-                <label for="firstname" class="signup-form-label">First name:</label>
-                <input type="text" name="firstname" class="signup-form-input" id="signup-firstname-input" required>
-                <label for="lastname" class="signup-form-label">Last name:</label>
+                <label for="" class="signup-form-label hidden" id="fields-required-error-message">All fields
+                    are required!</label>
+                <label for="firstname" class="signup-form-label">First name</label>
+                <input type="text" name="firstname" class="signup-form-input" id="signup-firstname-input" required placeholder="">
+                <label for="lastname" class="signup-form-label">Last name</label>
                 <input type="text" name="lastname" class="signup-form-input" id="signup-lastname-input" required>
-                <label for="email" class="signup-form-label">Email:</label>
+                <label for="email" class="signup-form-label">Email</label>
                 <input type="email" name="email" class="signup-form-input" id="signup-email-input" required>
-                <label for="password" class="signup-form-label">Password:</label>
+                <label for="password" class="signup-form-label">Password</label>
                 <input type="password" name="password" class="signup-form-input" id="signup-password-input" required>
                 <button class="signup-form-submit-button" id="signup-form-submit">Create</button>
             </form>
         </div>
-        <div class="display-news-header"></div>
+        
     </div>
-
-<!--login_form_container-->
+    <div class="display-news-header"></div>
+    <!--login_form_container-->
     <div class="login_form_container" id="display_login">
         <div class="login-welcome-message">
             <h2>Welcome to Claps!</h2>
@@ -142,7 +183,8 @@
                     <a href="https://www.instagram.com/h.bhzo/">Instagram</a>
                 </div>
                 <div class="bottom-contact">
-                    <p><a href="https://developer.ticketmaster.com/products-and-docs/apis/getting-started/"target="_blank">Ticketmaster API v2</a></p>
+                    <p><a href="https://developer.ticketmaster.com/products-and-docs/apis/getting-started/"
+                            target="_blank">Ticketmaster API v2</a></p>
                     <p><a href="https://developers.google.com/youtube/v3" target="_blank">Youtube API v3</a></p>
                     <p><a href="https://newsapi.org/" target="_blank">Newsapi API v2</a></p>
                 </div>
@@ -150,4 +192,5 @@
         </div>
     </footer>
 </body>
+
 </html>
