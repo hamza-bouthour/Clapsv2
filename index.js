@@ -20,7 +20,7 @@ function displayEvents(answer) {
     $('div.display-events').empty();
     for (i = 0; i < 10; i++) {
         let info = answer._embedded.events[i]
-        const eventName = answer._embedded.events[i].name.slice(0,25)
+        const eventName = answer._embedded.events[i].name.slice(0,20)
         if (info.hasOwnProperty('info')) {
             $('div.display-events').append(`
                 <div class="event-box">
@@ -37,7 +37,7 @@ function displayEvents(answer) {
 }
 function displayEventsHeader(answer) {  
     for (i = 0; i < 4; i++) {
-        let eventName = answer._embedded.events[i].name.slice(0,25)
+        let eventName = answer._embedded.events[i].name.slice(0,20)
         $('div.display-events-header').append(`
             <div class="event-box-header">
             <img class="event-image-header" src="${answer._embedded.events[i].images[0].url}" alt="event">
@@ -71,7 +71,7 @@ function displayPlaylist(responseJson) {
 function displayNews(responseJson) {
     $('div.display-news-header').empty();
     for (i=0; i < 2; i++) {
-        let articleDescription  = responseJson.articles[i].description.slice(0, 110);
+        let articleDescription  = responseJson.articles[i].description.slice(0, 50);
         $('div.display-news-header').append(
             `<div class="news-box">
                 <div class="news-thumbnail">
@@ -206,8 +206,6 @@ function getPlaylist() {
 
 let navClickCount = 1 
 let contactClickCount = 1
-
-
 function updateInformations() {
     const userFirstName = $('input#signup-firstname-input').val();
     const userLastName = $('input#signup-lastname-input').val();
@@ -322,12 +320,7 @@ $(document).ready(function () {
             
         } else {
             $('div.html-bottom-home').addClass('mobile-contact'); 
-            contactClickCount = 1;
-            
+            contactClickCount = 1;    
         }  
     });     
 });
-
-
-
-
