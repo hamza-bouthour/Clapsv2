@@ -304,6 +304,46 @@
         font-family: 'Open Sans', sans-serif;
         font-size: 15px;
     }
+    .introduction-header {
+        font-family: 'Baloo Paaji 2', cursive;
+    }
+    div.html-bottom-home {
+        top: 65px;
+        left: 0;
+        position: fixed;
+        line-height: 12px;
+        font-size: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: #076d92;
+     
+        width: 100%;
+    }
+    div.contact-container {
+        font-family: 'Baloo Tammudu 2', cursive;
+       
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        color: white;
+        
+    }
+    /* div.bottom-contact {
+        
+        display: block;
+        
+    } */
+    p.bottom-about-header {
+        font-weight: 700;
+        font-size: 10px; 
+    }
+    div.contact-container div a {
+        color: white;
+        text-decoration: underline;
+    }
+    .mobile-contact {
+        display: none;
+    }
 }  
 
 
@@ -412,6 +452,9 @@
         font-family: 'Source Sans Pro', sans-serif;
         text-decoration: none;
         color: #076d92;
+    }
+    a#show-contact-button {
+        display: none;
     }
     a#link_signup_home:hover {
         
@@ -545,7 +588,7 @@
     }
     div.introduction-header {
        
-       margin-left: 25px;
+       margin-left: 30px;
      
        
         color: white;
@@ -834,68 +877,5 @@
 
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
