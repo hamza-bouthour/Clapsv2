@@ -39,7 +39,7 @@
         margin-bottom: 0;
     }
     div.claps-logo {
-        margin-left: 38%;
+        margin-left: 35%;
     }
     div.claps-logo img {
         margin-top: -7px;
@@ -180,6 +180,7 @@
         display: flex;
         flex-direction: row;
         justify-content: start;
+        overflow-y: hidden;
     }
     div.news-box {
         font-family: 'Baloo Tammudu 2', cursive;
