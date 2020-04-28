@@ -118,11 +118,6 @@
         flex-direction: row;
         justify-content: center;    
     }
-    div.profile-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-    }
     table {
         background-color: white;
         padding: 35px;
@@ -208,12 +203,8 @@
     div.demo-events img {
         width: 300px;
     }
-    div.display-news {
-        font-family: 'Baloo Tammudu 2', cursive;
-        margin-left: 50px;
-    }
     div.news-box {
-        margin-left: 90px;
+        margin-left: 50px;
         margin-bottom: 50px;
         display: flex;
         flex-direction: row;
@@ -345,6 +336,11 @@
         justify-content: space-around;
         color: white;    
     }
+    .profile-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
     div.bottom-contact {
         line-height: 22px;
         display: block;
@@ -361,11 +357,9 @@
         cursor: pointer;
     }
     button#button-finish-update {
-        margin-top: 390px;
-        font-size: 25px;
+        font-size: 18px;
         font-weight: 600;
-        background-color: #076d92;
-        border: solid 2px #076d92;
+        border: white 1px solid; 
         color: rgb(1, 202, 45);
     }
     label#fields-required-error-message {
@@ -424,7 +418,7 @@
         margin-bottom: 0;
     }
     div.claps-logo {
-        margin-left: 31%;
+        margin-left: 38%;
     }
     div.claps-logo img {
         margin-top: -7px;
@@ -517,6 +511,9 @@
         text-align: center;
         background-color: white;
     }
+    .display-news-header {
+        display: none;
+    }
     div.user-welcome-message h2 {
         color: white;
         font-size: 35px;   
@@ -568,45 +565,6 @@
     }
     div.demo-events img {
         width: 300px;
-    }
-    div.display-news-header {
-        display: none;
-        margin-left: -80px;
-    }
-    div.display-news {
-        font-family: 'Baloo Tammudu 2', cursive;
-        margin-left: 50px;
-    }
-    div.news-box {
-        margin-left: 90px;
-        margin-bottom: 50px;
-        display: flex;
-        flex-direction: row;
-        justify-content: start;
-    }
-    div.news-details {
-        line-height: 15px;
-        border-radius: 4px;
-        padding: 15px;
-        height: 220px;
-        background-color: rgba(254, 254, 255, 0.7);
-        border: solid 1px white;
-        margin-left: 10px;
-        margin-right: 15px;
-        width: 200px;    
-    }
-    div.news-details a.news-link,
-    div.news-details p.news-source {
-        color: black;
-        text-decoration: none;
-        color:rgb(5, 17, 121);
-        font-weight: 700;
-    }
-    img.news-image {
-        border-radius: 4px;
-        width: 310px;
-        height: 220px;
-        border: solid 1px white;
     }
     input.signup-form-input {
         border: solid 1px rgb(180, 182, 190) ;
@@ -696,8 +654,8 @@
         font-weight: 600;
         margin-left: 200px;
         margin-bottom: 15px;    
-        background-color: #076d92;
-        border: solid 2px #076d92;
+        background-color: white;
+        border: solid 2px white;
         color: rgb(1, 202, 45);
     }
     label#fields-required-error-message {
@@ -716,6 +674,7 @@
         color: black;    
     }
     div.html-bottom-home {
+        border-bottom: 1px solid rgb(4, 192, 60);
         top: 65px;
         left: 0;
         position: fixed;
