@@ -211,12 +211,12 @@ function updateInformations() {
     const userLastName = $('input#signup-lastname-input').val();
     const userEmail = $('input#signup-email-input').val();
     $('button#button-finish-update').removeClass('hidden');
-    $('li#user-firstname').empty();
-    $('li#user-firstname').append(`<input class="information-label" type="text" name="" id="update-input-firstname" required placeholder="${userFirstName}">`);
-    $('li#user-lastname').empty();
-    $('li#user-lastname').append(`<input class="information-label" type="text" name="" id="update-input-lastname" required placeholder="${userLastName}">`);
-    $('li#user-email').empty();
-    $('li#user-email').append(`<input class="information-label" type="email" name="" id="update-input-email" required placeholder="${userEmail}">`);
+    $('td#user-firstname').empty();
+    $('td#user-firstname').append(`<input class="information-label" type="text" name="" id="update-input-firstname" required placeholder="${userFirstName}">`);
+    $('td#user-lastname').empty();
+    $('td#user-lastname').append(`<input class="information-label" type="text" name="" id="update-input-lastname" required placeholder="${userLastName}">`);
+    $('td#user-email').empty();
+    $('td#user-email').append(`<input class="information-label" type="email" name="" id="update-input-email" required placeholder="${userEmail}">`);
     console.log(userEmail);
 }
 function signUpForm() {
@@ -234,13 +234,13 @@ function signUpForm() {
         $('div#display_signup').removeClass('container_signup_form').addClass('hidden');
         $('div#display_account').removeClass('hidden').addClass('container_profile_information');
         $('div#user-firstname-welcome span').text(userFirstName);
-        $('li#user-firstname').text(userFirstName);
-        $('li#user-lastname').text(userLastName);
-        $('li#user-email').text(userEmail);
-        $('li#user-events').text(userEvents);
-        $('li#user-ticket').text(userTickets);
-        $('li#user-parking').text(userParking);
-        $('li#user-payment').text(userPayment);
+        $('td#user-firstname').text(userFirstName);
+        $('td#user-lastname').text(userLastName);
+        $('td#user-email').text(userEmail);
+        $('td#user-events').text(userEvents);
+        $('td#user-ticket').text(userTickets);
+        $('td#user-parking').text(userParking);
+        $('td#user-payment').text(userPayment);
     }
 }
 
@@ -289,9 +289,12 @@ $(document).ready(function () {
         let updatedUserFirstName = $('input#update-input-firstname').val();
         let updatedUserLastName = $('input#update-input-lastname').val();
         let updatedUserEmail = $('input#update-input-email').val();
-        $('li#user-firstname').text(updatedUserFirstName);
-        $('li#user-lastname').text(updatedUserLastName);
-        $('li#user-email').text(updatedUserEmail);
+        $('td#user-firstname').empty();
+        $('td#user-firstname').html(`<p>${updatedUserFirstName}</p>`);
+        $('td#user-lastname').empty();
+        $('td#user-lastname').text(updatedUserLastName);
+        $('td#user-email').empty();
+        $('td#user-email').text(updatedUserEmail);
         $('div#user-firstname-welcome span').empty();
         $('div#user-firstname-welcome span').text(updatedUserFirstName);
         $('button#button-finish-update').addClass('hidden');
@@ -300,11 +303,11 @@ $(document).ready(function () {
         event.preventDefault();
         getVideos();
     })
-    $("li#redirect-to-aboutme").click(function() {
-        $('html, body').animate({
-            scrollTop: $("div.html-button").offset().top
-        }, 8000);
-    });
+    // $("li#redirect-to-aboutme").click(function() {
+    //     $('html, body').animate({
+    //         scrollTop: $("div.html-button").offset().top
+    //     }, 8000);
+    // });
     
         
         $('div.nav-sandiwch').on('click', function (event) {
