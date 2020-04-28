@@ -204,6 +204,7 @@ function getPlaylist() {
          });       
 }
 let navClickCount = 1 
+let contactClickCount = 1
 
 
 function updateInformations() {
@@ -299,10 +300,10 @@ $(document).ready(function () {
         $('div#user-firstname-welcome span').text(updatedUserFirstName);
         $('button#button-finish-update').addClass('hidden');
     });
-    $('button#asba').on('click', function (event) {
-        event.preventDefault();
-        getVideos();
-    })
+    // $('button#asba').on('click', function (event) {
+    //     event.preventDefault();
+    //     getVideos();
+    // })
     // $("li#redirect-to-aboutme").click(function() {
     //     $('html, body').animate({
     //         scrollTop: $("div.html-button").offset().top
@@ -321,11 +322,26 @@ $(document).ready(function () {
             }  else {
                 $('div.sandwich-line-on-click').removeClass('sandwich-line-on-click').addClass('sandwich-line');
                 $('div.nav-bar-line2').addClass('hidden'); 
+                $('div.html-bottom-home').addClass('mobile-contact'); 
                 navClickCount = 1;
             }
               
                 
         });
+        $('a.show-contact-button').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (contactClickCount == 1) {
+                $('div.html-bottom-home').removeClass('mobile-contact'); 
+                contactClickCount++;
+               
+            } else {
+                $('div.html-bottom-home').addClass('mobile-contact'); 
+                contactClickCount = 1;
+              
+            }
+            
+        });     
         // $('body').on('click', function (event) {
         //     event.preventDefault();
         //     event.stopPropagation();
